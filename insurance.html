@@ -11775,7 +11775,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Insurance-Data">Insurance Data<a class="anchor-link" href="#Insurance-Data">&#182;</a></h1><p>This iPython Notebook is intended to look into relationships between data from a Kaggle data set on insurance information (age, sex, bmi, # of children, smoker (bool), region, charges).</p>
+<h1 id="Insurance-Data">Insurance Data<a class="anchor-link" href="#Insurance-Data">&#182;</a></h1><p>This Jupyter Notebook takes an insurance data set from Kaggle and looks into the relationships between the different parameters given. First, we check for a correlation (a linear relationship) between BMI and insurance charges, and then we see if being a smoker influences what you're charged by insurance companies using an A/B Test.</p>
 
 </div>
 </div>
@@ -11949,9 +11949,9 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Does-being-a-smoker-affect-what-you're-charged-by-the-insurance-company?">Does being a smoker affect what you're charged by the insurance company?<a class="anchor-link" href="#Does-being-a-smoker-affect-what-you're-charged-by-the-insurance-company?">&#182;</a></h3><p><strong>Null Hypothesis</strong>: Being a smoker does not affect your charges; any differences in the observed values are due to random chance.
-<strong>Alternative Hypothesis</strong>: Being a smoker <em>does</em> affect what you are charged in insurance premiums.</p>
-<p>This question, from a data science perspective, is asking whether or not the charges for the groups <code>smoker</code> and <code>non-smoker</code> come from the same underlying distribution. To find this out, we use an A/B Test, which involves shuffling up the data in question in a sample <em>without replacement</em>, computing a test statistic, and finding the p-value. By convention, if the p-value is less than .05 (meaning less than 5% of the simulated data point in the same direction as the original data set, we lean in the direction of the alternative hypothesis). In this A/B test, the test statistic will be the absolute difference between the mean charges for smokers and non-smokers.</p>
+<h3 id="Does-being-a-smoker-affect-what-you're-charged-by-the-insurance-company?">Does being a smoker affect what you're charged by the insurance company?<a class="anchor-link" href="#Does-being-a-smoker-affect-what-you're-charged-by-the-insurance-company?">&#182;</a></h3><p><strong>Null Hypothesis</strong>: Being a smoker does not affect your charges; any differences in the observed values are due to random chance.</p>
+<p><strong>Alternative Hypothesis</strong>: Being a smoker <em>does</em> affect what you are charged in insurance premiums.</p>
+<p>This question, from a data science perspective, is asking whether or not the charges for the groups <code>smoker</code> and <code>non-smoker</code> come from the same underlying distribution. To find this out, we use an A/B Test, which involves shuffling up the data in question in a sample <em>without replacement</em>, computing a test statistic, and finding the p-value. By convention, if the p-value is less than .05 (meaning less than 5% of the simulated data point in the same direction as the original data set), we lean in the direction of the alternative hypothesis. In this A/B test, the test statistic will be the absolute difference between the mean charges for smokers and non-smokers.</p>
 
 </div>
 </div>
@@ -12189,7 +12189,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Conclusion</strong>: Based on the fact that the p-value is small enough that even <em>Pyton</em> recognizes it as 0, we lean in the direction of the alternative hypothesis: that being a smoker affects what you're charged by insurance companies.</p>
+<p><strong>Conclusion</strong>: Because the p-value is 0, we know that <em>none</em> of the shuffled sets were as far or farther in the direction of the alternative hypothesis than was the original data set; this means that in all likelihood, the observed differences are <em>not</em> due to random chance. Thus, we lean in the direction of the alternative hypothesis: that being a smoker affects what you're charged by insurance companies. Conventional wisdom, I know, but it is still nice to have it proven empirically.</p>
 
 </div>
 </div>
