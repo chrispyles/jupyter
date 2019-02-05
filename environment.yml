@@ -1,0 +1,11 @@
+name: chris-pyles-jupyter-environment
+dependencies:
+    - python
+    - numpy
+    - scipy
+    - string
+    - pip:
+        - pandas
+        - matplotlib
+        - seaborn
+        - datascience
