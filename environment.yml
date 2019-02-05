@@ -3,7 +3,6 @@ dependencies:
     - python
     - numpy
     - scipy
-    - string
     - pip:
         - pandas
         - matplotlib
