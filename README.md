@@ -3,8 +3,6 @@
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/chrispyles/jupyter/master?filepath=notebooks)
 
----
-
 This repository contains jupyter projects and HTML-exported notebooks to link to on my website.
 
 Selected Projects:
