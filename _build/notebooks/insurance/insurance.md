@@ -126,61 +126,6 @@ The best place to start with any data-oriented project is to figure out how the 
 
 
 
-{:.input_area}
-```python
-plt.figure(figsize=[20, 20])
-
-plt.subplot(331)
-sns.boxplot(y='age', data=insurance)
-plt.title('Boxplot of Ages')
-plt.ylabel('Age')
-
-ins_by_sex = insurance.groupby('sex').count()
-
-plt.subplot(332)
-plt.bar(ins_by_sex.index, ins_by_sex['age'], width=.75)
-plt.title('Counts of Sexes')
-plt.xlabel('Sex')
-plt.ylabel('Count')
-
-plt.subplot(333)
-plt.hist(insurance['bmi'], bins=np.arange(15.5, 53.5, 1), rwidth=.75)
-plt.title('Histogram of BMIs, bin width = 1')
-plt.xlabel('BMI')
-plt.ylabel('Count')
-
-plt.subplot(334)
-plt.hist(insurance['children'], bins=np.arange(-.5, 6.5, 1), rwidth=.5)
-plt.title('Histogram of No. of Children')
-plt.xlabel('No. of Children')
-plt.ylabel('Count')
-plt.xlim([-.5, 5.5])
-
-ins_by_smoker = insurance.groupby('smoker').count()
-
-plt.subplot(335)
-plt.bar(ins_by_smoker.index, ins_by_smoker['age'], width=.75)
-plt.title('Counts of Smokers and Non-Smokers')
-plt.xlabel('Smoker?')
-plt.ylabel('Count')
-
-ins_by_region = insurance.groupby('region').count()
-
-plt.subplot(336)
-plt.bar(ins_by_region.index, ins_by_region['age'], width=.75)
-plt.title('Counts of Regions')
-plt.xlabel('Region')
-plt.ylabel('Count')
-
-plt.subplot(338)
-plt.hist(insurance['charges'], bins=np.arange(1000, 64000, 2000))
-plt.title('Histogram of Charges, bin width = $2,000')
-plt.xlabel('Charges ($)')
-plt.ylabel('Count')
-
-plt.suptitle('Data Exploration', y=.92, fontsize=24);
-```
-
 
 
 {:.output .output_png}
@@ -188,7 +133,7 @@ plt.suptitle('Data Exploration', y=.92, fontsize=24);
 
 
 
-### Is there a correlation (a linear relationship) between BMI and insurance charges?
+## Is there a correlation between BMI and insurance charges?
 Correlation is calculated by taking two data points, putting them in standard units, multiplying the coordinates elementwise, and then finding the mean (all of this is defined in the `correlation` function below). The value of $r$, heretofore referred to as correlation, ranges from -1 to 1; a value near 1 indicates a positive linear relationship (i.e. a line with a positive slope), near -1 indicates a negative linear relationship, and near 0 indicates little/no linear relationship.
 
 Accompanying the calculation of $r$ is a scatter plot of the data, with BMI on the $x$-axis and insurance charges on the $y$-axis.
@@ -239,9 +184,10 @@ plt.subplots_adjust(top=0.9);
 
 
 
+### Conclusion
 As it turns out, although the correlation is .7, there really doesn't look to be much there. So while there may be _some_ linear relationship between BMI and insurance charges (or its log), it's not too apparent.
 
-### Does being a smoker affect what you're charged by the insurance company?
+## Does being a smoker affect what you're charged by the insurance company?
 **Null Hypothesis**: Being a smoker does not affect your charges; any differences in the observed values are due to random chance.
 
 **Alternative Hypothesis**: Being a smoker _does_ affect what you are charged in insurance premiums.
@@ -392,4 +338,5 @@ perm_test(smoker_and_charges, 100000)
 
 
 
-**Conclusion**: Because the p-value is 0, we know that _none_ of the shuffled sets were as far or farther in the direction of the alternative hypothesis than was the original data set; this means that in all likelihood, the observed differences are _not_ due to random chance. Thus, we lean in the direction of the alternative hypothesis: that being a smoker affects what you're charged by insurance companies. Conventional wisdom, I know, but it is still nice to have it proven empirically.
+### Conclusion
+Because the p-value is 0, we know that _none_ of the shuffled sets were as far or farther in the direction of the alternative hypothesis than was the original data set; this means that in all likelihood, the observed differences are _not_ due to random chance. Thus, we lean in the direction of the alternative hypothesis: that being a smoker affects what you're charged by insurance companies. Conventional wisdom, I know, but it is still nice to have it proven empirically.
