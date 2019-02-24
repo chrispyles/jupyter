@@ -6,7 +6,7 @@ prev_page:
   url: 
   title: ''
 next_page:
-  url: /insurance
+  url: /notebooks/insurance/insurance-done
   title: 'insurance.ipynb'
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---

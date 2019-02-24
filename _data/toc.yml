@@ -21,6 +21,6 @@
   not_numbered: true
   sections:
     - title: insurance.ipynb
-      url: insurance
+      url: notebooks/insurance/insurance-done
     - title: avocado.ipynb
-      url: avocado
+      url: notebooks/avocado/avocado-done

@@ -129,7 +129,6 @@ exclude:
   - vendor/ruby/
   - CNAME
   - environment.yml
-  - notebooks/
   - README.md
   - requirements.txt
 
