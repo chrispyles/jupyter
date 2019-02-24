@@ -126,6 +126,61 @@ The best place to start with any data-oriented project is to figure out how the 
 
 
 
+{:.input_area .hidecode}
+```python
+plt.figure(figsize=[20, 20])
+
+plt.subplot(331)
+sns.boxplot(y='age', data=insurance)
+plt.title('Boxplot of Ages')
+plt.ylabel('Age')
+
+ins_by_sex = insurance.groupby('sex').count()
+
+plt.subplot(332)
+plt.bar(ins_by_sex.index, ins_by_sex['age'], width=.75)
+plt.title('Counts of Sexes')
+plt.xlabel('Sex')
+plt.ylabel('Count')
+
+plt.subplot(333)
+plt.hist(insurance['bmi'], bins=np.arange(15.5, 53.5, 1), rwidth=.75)
+plt.title('Histogram of BMIs, bin width = 1')
+plt.xlabel('BMI')
+plt.ylabel('Count')
+
+plt.subplot(334)
+plt.hist(insurance['children'], bins=np.arange(-.5, 6.5, 1), rwidth=.5)
+plt.title('Histogram of No. of Children')
+plt.xlabel('No. of Children')
+plt.ylabel('Count')
+plt.xlim([-.5, 5.5])
+
+ins_by_smoker = insurance.groupby('smoker').count()
+
+plt.subplot(335)
+plt.bar(ins_by_smoker.index, ins_by_smoker['age'], width=.75)
+plt.title('Counts of Smokers and Non-Smokers')
+plt.xlabel('Smoker?')
+plt.ylabel('Count')
+
+ins_by_region = insurance.groupby('region').count()
+
+plt.subplot(336)
+plt.bar(ins_by_region.index, ins_by_region['age'], width=.75)
+plt.title('Counts of Regions')
+plt.xlabel('Region')
+plt.ylabel('Count')
+
+plt.subplot(338)
+plt.hist(insurance['charges'], bins=np.arange(1000, 64000, 2000))
+plt.title('Histogram of Charges, bin width = $2,000')
+plt.xlabel('Charges ($)')
+plt.ylabel('Count')
+
+plt.suptitle('Data Exploration', y=.92, fontsize=24);
+```
+
 
 
 {:.output .output_png}
