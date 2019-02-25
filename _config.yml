@@ -18,7 +18,7 @@
 # Jekyll site settings
 title: Chris Pyles
 author: Christopher Pyles
-email: cpyles@berkeley.exclude
+email: cpyles@berkeley.edu
 description: 
 baseurl: "" # the subpath of your site, e.g. /blog. If there is no subpath for your site, use an empty string ""
 url: "https://jupyter.cpyles.com" # the base hostname & protocol for your site, e.g. http://example.com
@@ -98,7 +98,7 @@ defaults:
       toc_label: "  On this page"
       toc_icon: "list-ul"
 
-favicon_path: "images/logo/favicon.ico"
+favicon_path: "https://cpyles.com/assets/favicon.ico"
 
 # Markdown Processing
 markdown: kramdown
