@@ -16,6 +16,22 @@
 # - divider: true  # Will insert a divider in the sidebar
 # - header: My Header  # Will insert a header with no link in the sidebar
 
+# - title: Projects and Jupyter Notebooks
+#   url: index
+#   not_numbered: true
+# - title: insurance.ipynb
+#   url: notebooks/insurance/insurance
+#   not_numbered: true
+# - title: avocado.ipynb
+#   url: notebooks/avocado/avocado
+#   not_numbered: true
+# - title: movies.ipynb
+#   url: notebooks/movies/movies
+#   not_numbered: true
+#   sections:
+#   - title: editing_dictionary.ipynb
+#     url: notebooks/movies/editing_dictionary
+
 - title: Projects and Jupyter Notebooks
   url: index
   not_numbered: true
