@@ -24,3 +24,5 @@
       url: notebooks/insurance/insurance
     - title: avocado.ipynb
       url: notebooks/avocado/avocado
+    - title: movies.ipynb
+      url: notebooks/movies/movies
