@@ -607,7 +607,7 @@ def clean_plots(df):
     new_df = df.drop(['Plot'], axis=1).assign(Plot=cleaned_plots)
     return new_df
 
-# Commented out below lines to save time when running this code later:
+# # Commented out below lines to save time when running this code later:
 # movies_with_cleaned_plots = clean_plots(filtered_genres)
 # movies_with_cleaned_plots.to_csv('movies_with_cleaned_plots.csv', index=False)
 
