@@ -795,4 +795,4 @@ for genre in plot_lists.index.values:
 
 <div id="dict"></div>
 
-`dict.csv`: This CSV file contains (almost) all the words in the English language, transformed to lowercase and with any punctuation removed. The file is from [this Github repo](https://github.com/manassharma07/English-Dictionary-CSV), and it exists in its original format in the file [dictionary.csv](./dictionary.csv). To see the code that I used to transform the dictionary to lower case and remove punctuation, see [editing_dictionary.ipynb](./editing_dictionary.ipynb).
+`dict.csv`: This CSV file contains (almost) all the words in the English language, transformed to lowercase and with any punctuation removed. The file is from [this Github repo](https://github.com/manassharma07/English-Dictionary-CSV), and it exists in its original format in the file [dictionary.csv](./dictionary.csv). To see the code that I used to transform the dictionary to lower case and remove punctuation, see [editing_dictionary.ipynb](./editing_dictionary).
