@@ -17,4 +17,4 @@ One of my favorite passtimes is to hone my computing and data-analysis skills by
 | Notebook | Summary |
 |-----|-----|
 | insurance.ipynb | This notebook focuses on an insurance data set that has information about premiums, BMI, sex, and smoker vs. non-smoker, among other things. In this notebook, I looked for linear relationships between BMI and insurance premiums using the correlation coefficient and I ran an A/B test to determine whether or not smokers are charged more in insurance premiums than are non-smokers. |
-| avocado.ipynb | In this notebook, I wrote a k-nearest neighbors classifier that classified avocadoes as organic or conventional using their average price, volume sold, and number of bags used. In this way, I got a 7-NN classifier with 95% accuracy, and I showed that the optimal values of $k$ were 7, 13, and 49. |
+| avocado.ipynb | **\[IN PROGRESS\]** This notebook, written in R, has a $k$-nearest neighbors classifier that classified avocados as organic or conventional using their average price, volume sold, and number of bags used. |
