@@ -39,6 +39,10 @@ import matplotlib.pyplot as plt
 %R library(tidyverse)
 
 %R r_avocado <- read_csv('avocado.csv')
+
+# will create a placeholder variable tbl so that the tibbles
+# can be exported to Python to be displayed nicely; will reuse
+# this variable throughout the notebook
 %R tbl <- head(r_avocado)
 %Rget tbl
 ```
@@ -411,8 +415,6 @@ dist <- function (tbl, row) {
 </div>
 
 
-
-(The variable `tbl` created above is just a placeholder to get the tibbles into Python so that they output nicely. This will be used throughout the notebook.)
 
 ### Majority Classification
 $k$-NN classifiers work by determining what classification a majority of the $k$ points closest to a point in question have. The function `find_majority` defined below runs the `dist` function on a table and returns that output sorted by increasing distance. The function `knn` below that selects the top $k$ rows and returns the majority classification.
