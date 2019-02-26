@@ -35,31 +35,154 @@ import matplotlib.pyplot as plt
 
 
 {:.input_area}
-```r
-%%R
-library(tidyverse)
+```python
+%R library(tidyverse)
 
-r_avocado <- read_csv('avocado.csv')
-head(r_avocado)
+%R r_avocado <- read_csv('avocado.csv')
+%R tbl <- head(r_avocado)
+%Rget tbl
 ```
 
 
 
-{:.output .output_data_text}
-```
-[90m# A tibble: 6 x 13[39m
-  Date       AveragePrice `Total Volume` `4046` `4225` `4770` `Total Bags`
-  [3m[90m<date>[39m[23m            [3m[90m<dbl>[39m[23m          [3m[90m<dbl>[39m[23m  [3m[90m<dbl>[39m[23m  [3m[90m<dbl>[39m[23m  [3m[90m<dbl>[39m[23m        [3m[90m<dbl>[39m[23m
-[90m1[39m 2015-12-27         1.33         [4m6[24m[4m4[24m237.  [4m1[24m037. 5.45[90me[39m4   48.2        [4m8[24m697.
-[90m2[39m 2015-12-20         1.35         [4m5[24m[4m4[24m877.   674. 4.46[90me[39m4   58.3        [4m9[24m506.
-[90m3[39m 2015-12-13         0.93        [4m1[24m[4m1[24m[4m8[24m220.   795. 1.09[90me[39m5  130.         [4m8[24m145.
-[90m4[39m 2015-12-06         1.08         [4m7[24m[4m8[24m992.  [4m1[24m132  7.20[90me[39m4   72.6        [4m5[24m811.
-[90m5[39m 2015-11-29         1.28         [4m5[24m[4m1[24m040.   941. 4.38[90me[39m4   75.8        [4m6[24m184.
-[90m6[39m 2015-11-22         1.26         [4m5[24m[4m5[24m980.  [4m1[24m184. 4.81[90me[39m4   43.6        [4m6[24m684.
-[90m# … with 6 more variables: `Small Bags` [3m[90m<dbl>[90m[23m, `Large Bags` [3m[90m<dbl>[90m[23m, `XLarge
-#   Bags` [3m[90m<dbl>[90m[23m, type [3m[90m<chr>[90m[23m, year [3m[90m<dbl>[90m[23m, region [3m[90m<chr>[90m[23m[39m
 
-```
+
+<div markdown="0" class="output output_html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>AveragePrice</th>
+      <th>Total Volume</th>
+      <th>4046</th>
+      <th>4225</th>
+      <th>4770</th>
+      <th>Total Bags</th>
+      <th>Small Bags</th>
+      <th>Large Bags</th>
+      <th>XLarge Bags</th>
+      <th>type</th>
+      <th>year</th>
+      <th>region</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>16796.0</td>
+      <td>1.33</td>
+      <td>64236.62</td>
+      <td>1036.74</td>
+      <td>54454.85</td>
+      <td>48.16</td>
+      <td>8696.87</td>
+      <td>8603.62</td>
+      <td>93.25</td>
+      <td>0.0</td>
+      <td>conventional</td>
+      <td>2015.0</td>
+      <td>Albany</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>16789.0</td>
+      <td>1.35</td>
+      <td>54876.98</td>
+      <td>674.28</td>
+      <td>44638.81</td>
+      <td>58.33</td>
+      <td>9505.56</td>
+      <td>9408.07</td>
+      <td>97.49</td>
+      <td>0.0</td>
+      <td>conventional</td>
+      <td>2015.0</td>
+      <td>Albany</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>16782.0</td>
+      <td>0.93</td>
+      <td>118220.22</td>
+      <td>794.70</td>
+      <td>109149.67</td>
+      <td>130.50</td>
+      <td>8145.35</td>
+      <td>8042.21</td>
+      <td>103.14</td>
+      <td>0.0</td>
+      <td>conventional</td>
+      <td>2015.0</td>
+      <td>Albany</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>16775.0</td>
+      <td>1.08</td>
+      <td>78992.15</td>
+      <td>1132.00</td>
+      <td>71976.41</td>
+      <td>72.58</td>
+      <td>5811.16</td>
+      <td>5677.40</td>
+      <td>133.76</td>
+      <td>0.0</td>
+      <td>conventional</td>
+      <td>2015.0</td>
+      <td>Albany</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>16768.0</td>
+      <td>1.28</td>
+      <td>51039.60</td>
+      <td>941.48</td>
+      <td>43838.39</td>
+      <td>75.78</td>
+      <td>6183.95</td>
+      <td>5986.26</td>
+      <td>197.69</td>
+      <td>0.0</td>
+      <td>conventional</td>
+      <td>2015.0</td>
+      <td>Albany</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>16761.0</td>
+      <td>1.26</td>
+      <td>55979.78</td>
+      <td>1184.27</td>
+      <td>48067.99</td>
+      <td>43.61</td>
+      <td>6683.91</td>
+      <td>6556.47</td>
+      <td>127.44</td>
+      <td>0.0</td>
+      <td>conventional</td>
+      <td>2015.0</td>
+      <td>Albany</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
 
 
 ## Principal Component Analysis
@@ -198,27 +321,98 @@ dist <- function (tbl, row) {
 
 
 {:.input_area}
-```r
-%%R
-head(dist(av_train, av_test[1, 1:3]))
+```python
+%R tbl <- head(dist(av_train, av_test[1, 1:3]))
+%Rget tbl
 ```
 
 
 
-{:.output .output_data_text}
-```
-[90m# A tibble: 6 x 5[39m
-  AveragePrice `Total Volume` `Total Bags` type         distances
-         [3m[90m<dbl>[39m[23m          [3m[90m<dbl>[39m[23m        [3m[90m<dbl>[39m[23m [3m[90m<chr>[39m[23m            [3m[90m<dbl>[39m[23m
-[90m1[39m         1.75         [4m2[24m[4m4[24m607.        [4m8[24m492. organic        [4m7[24m[4m9[24m[4m8[24m660.
-[90m2[39m         1.37          [4m1[24m687.         772. organic        [4m8[24m[4m2[24m[4m2[24m414.
-[90m3[39m         1.47        [4m7[24m[4m1[24m[4m6[24m020.       [4m9[24m[4m2[24m754. conventional   [4m3[24m[4m1[24m[4m0[24m420.
-[90m4[39m         0.79        [4m3[24m[4m4[24m[4m4[24m613.       [4m9[24m[4m7[24m397. conventional   [4m4[24m[4m8[24m[4m3[24m332.
-[90m5[39m         0.99         [4m6[24m[4m8[24m079.       [4m5[24m[4m2[24m174. organic        [4m7[24m[4m3[24m[4m9[24m465.
-[90m6[39m         2.93         [4m2[24m[4m1[24m525.        [4m4[24m161. organic        [4m8[24m[4m0[24m[4m3[24m483.
 
-```
 
+<div markdown="0" class="output output_html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>AveragePrice</th>
+      <th>Total Volume</th>
+      <th>Total Bags</th>
+      <th>type</th>
+      <th>distances</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>1.51</td>
+      <td>213417.87</td>
+      <td>93135.77</td>
+      <td>organic</td>
+      <td>3.594009e+04</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1.27</td>
+      <td>207295.00</td>
+      <td>73013.00</td>
+      <td>conventional</td>
+      <td>2.117595e+04</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1.33</td>
+      <td>10100.44</td>
+      <td>5844.44</td>
+      <td>organic</td>
+      <td>1.874337e+05</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.69</td>
+      <td>1325974.87</td>
+      <td>290191.77</td>
+      <td>conventional</td>
+      <td>1.160738e+06</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1.27</td>
+      <td>3025330.44</td>
+      <td>1072285.55</td>
+      <td>conventional</td>
+      <td>3.010836e+06</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>1.94</td>
+      <td>3507.89</td>
+      <td>2427.51</td>
+      <td>organic</td>
+      <td>1.947967e+05</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+
+
+(The variable `tbl` created above is just a placeholder to get the tibbles into Python so that they output nicely. This will be used throughout the notebook.)
 
 ### Majority Classification
 $k$-NN classifiers work by determining what classification a majority of the $k$ points closest to a point in question have. The function `find_majority` defined below runs the `dist` function on a table and returns that output sorted by increasing distance. The function `knn` below that selects the top $k$ rows and returns the majority classification.
@@ -241,26 +435,95 @@ find_majority <- function (df, df2, row_index) {
 
 
 {:.input_area}
-```r
-%%R
-head(find_majority(av_train, av_test, 1))
+```python
+%R tbl <- head(find_majority(av_train, av_test, 1))
+%Rget tbl
 ```
 
 
 
-{:.output .output_data_text}
-```
-[90m# A tibble: 6 x 5[39m
-  AveragePrice `Total Volume` `Total Bags` type         distances
-         [3m[90m<dbl>[39m[23m          [3m[90m<dbl>[39m[23m        [3m[90m<dbl>[39m[23m [3m[90m<chr>[39m[23m            [3m[90m<dbl>[39m[23m
-[90m1[39m         0.87        [4m7[24m[4m2[24m[4m6[24m065.      [4m4[24m[4m1[24m[4m0[24m248. conventional    [4m1[24m[4m0[24m052.
-[90m2[39m         1.19        [4m7[24m[4m2[24m[4m9[24m001.      [4m4[24m[4m0[24m[4m7[24m997. conventional    [4m1[24m[4m1[24m166.
-[90m3[39m         0.87        [4m7[24m[4m1[24m[4m1[24m564.      [4m3[24m[4m9[24m[4m3[24m543. conventional    [4m1[24m[4m2[24m118.
-[90m4[39m         0.83        [4m7[24m[4m2[24m[4m5[24m928.      [4m4[24m[4m1[24m[4m4[24m298. conventional    [4m1[24m[4m3[24m150.
-[90m5[39m         1.26        [4m7[24m[4m0[24m[4m9[24m903.      [4m3[24m[4m8[24m[4m5[24m545. conventional    [4m1[24m[4m9[24m797.
-[90m6[39m         1.16        [4m6[24m[4m9[24m[4m6[24m101.      [4m3[24m[4m9[24m[4m6[24m084. conventional    [4m2[24m[4m3[24m908.
 
-```
+
+<div markdown="0" class="output output_html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>AveragePrice</th>
+      <th>Total Volume</th>
+      <th>Total Bags</th>
+      <th>type</th>
+      <th>distances</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>1.10</td>
+      <td>186520.46</td>
+      <td>68397.88</td>
+      <td>conventional</td>
+      <td>1008.005987</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1.47</td>
+      <td>187381.18</td>
+      <td>70610.63</td>
+      <td>conventional</td>
+      <td>1538.694513</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1.55</td>
+      <td>187617.54</td>
+      <td>68068.26</td>
+      <td>organic</td>
+      <td>1786.127859</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1.23</td>
+      <td>187293.00</td>
+      <td>67821.00</td>
+      <td>conventional</td>
+      <td>1801.347256</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1.31</td>
+      <td>185003.97</td>
+      <td>70544.59</td>
+      <td>conventional</td>
+      <td>1826.876545</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.91</td>
+      <td>186464.64</td>
+      <td>67288.78</td>
+      <td>conventional</td>
+      <td>2113.266523</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
 
 
 
@@ -281,21 +544,47 @@ knn <- function (df, df2, row, k) {
 
 
 {:.input_area}
-```r
-%%R
-knn(av_train, av_test, 1, 7)
+```python
+%R tbl <- knn(av_train, av_test, 1, 7)
+%Rget tbl
 ```
 
 
 
-{:.output .output_data_text}
-```
-[90m# A tibble: 1 x 1[39m
-  type        
-  [3m[90m<chr>[39m[23m       
-[90m1[39m conventional
 
-```
+
+<div markdown="0" class="output output_html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>conventional</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
 
 
 ## Testing the Classifier
@@ -328,7 +617,7 @@ test_accuracy(av_train, av_test, 7)
 
 {:.output .output_data_text}
 ```
-[1] 0.9196787
+[1] 0.9277108
 
 ```
 
@@ -345,24 +634,80 @@ results <- tibble(.rows = 50)
 results$k <- seq(1, 100, by = 2)
 accuracy <- sapply(results$k, (function(k){test_accuracy(av_train, av_test, k)}))
 results$accuracy <- unlist(accuracy)
-head(arrange(results, desc(accuracy)))
 ```
 
 
 
-{:.output .output_data_text}
-```
-[90m# A tibble: 6 x 2[39m
-      k accuracy
-  [3m[90m<dbl>[39m[23m    [3m[90m<dbl>[39m[23m
-[90m1[39m    37    0.944
-[90m2[39m    77    0.944
-[90m3[39m    35    0.940
-[90m4[39m    39    0.940
-[90m5[39m    69    0.940
-[90m6[39m    71    0.940
 
+{:.input_area}
+```python
+%R tbl <- head(arrange(results, desc(accuracy)))
+%Rget tbl
 ```
+
+
+
+
+
+<div markdown="0" class="output output_html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>k</th>
+      <th>accuracy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>41.0</td>
+      <td>0.931727</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>5.0</td>
+      <td>0.927711</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>7.0</td>
+      <td>0.927711</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>11.0</td>
+      <td>0.927711</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>13.0</td>
+      <td>0.927711</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>15.0</td>
+      <td>0.927711</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
 
 
 The results of this test change depending on the training and test sets, so the best way to get the value of $k$ that is most accurate most of the time is to bootstrap the training and test sets, which will be done in Python. The R function `bootstrap_data_sets` shuffles the `r_avocado` table loaded into R earlier and returns a tibble with the desired columns. The Python `bootstrap_avocado` function gets this table using `%Rget` and returns two DataFrames, the training and test sets.
