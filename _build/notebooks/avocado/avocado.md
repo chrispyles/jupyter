@@ -20,7 +20,7 @@ This Jupyter Notebook contains the code that takes in a table with information a
 ```R
 library(tidyverse)
 
-avocado <- as_tibble(read.csv('avocado.csv'))
+avocado <- read_csv('avocado.csv')
 head(avocado)
 ```
 
@@ -28,7 +28,7 @@ head(avocado)
 
 <div markdown="0" class="output output_html">
 <table>
-<thead><tr><th scope=col>Date</th><th scope=col>AveragePrice</th><th scope=col>Total.Volume</th><th scope=col>X4046</th><th scope=col>X4225</th><th scope=col>X4770</th><th scope=col>Total.Bags</th><th scope=col>Small.Bags</th><th scope=col>Large.Bags</th><th scope=col>XLarge.Bags</th><th scope=col>type</th><th scope=col>year</th><th scope=col>region</th></tr></thead>
+<thead><tr><th scope=col>Date</th><th scope=col>AveragePrice</th><th scope=col>Total Volume</th><th scope=col>4046</th><th scope=col>4225</th><th scope=col>4770</th><th scope=col>Total Bags</th><th scope=col>Small Bags</th><th scope=col>Large Bags</th><th scope=col>XLarge Bags</th><th scope=col>type</th><th scope=col>year</th><th scope=col>region</th></tr></thead>
 <tbody>
 	<tr><td>2015-12-27  </td><td>1.33        </td><td> 64236.62   </td><td>1036.74     </td><td> 54454.85   </td><td> 48.16      </td><td>8696.87     </td><td>8603.62     </td><td> 93.25      </td><td>0           </td><td>conventional</td><td>2015        </td><td>Albany      </td></tr>
 	<tr><td>2015-12-20  </td><td>1.35        </td><td> 54876.98   </td><td> 674.28     </td><td> 44638.81   </td><td> 58.33      </td><td>9505.56     </td><td>9408.07     </td><td> 97.49      </td><td>0           </td><td>conventional</td><td>2015        </td><td>Albany      </td></tr>
@@ -50,7 +50,7 @@ This cell selects the 4 columns we will use from the original table (three data 
 {:.input_area}
 ```R
 av <- avocado %>%
-    select(AveragePrice, Total.Volume, Total.Bags, type) %>%
+    select(AveragePrice, 'Total Volume', 'Total Bags', type) %>%
     sample_frac(1)
 av_train <- av[1:18000,]
 av_test <- av[-(1:18000),]
@@ -77,14 +77,11 @@ The function defined takes as arguments a table whose first 3 columns are data p
 
 {:.input_area}
 ```R
-dist <- function (tbl, vec) {
+dist <- function (tbl, row) {
+    vec <- row %>% slice(1) %>% c(recursive = TRUE) %>% unname()
     new_tbl <- as_tibble(tbl)
-    new_tbl$distances = NA
-    for (i in 1:dim(new_tbl)[1]) {
-        dist <- sqrt((new_tbl[i, 1] - vec[1])^2 + (new_tbl[i, 2] - vec[2])^2 + (new_tbl[i, 3] - vec[3])^2)
-        new_tbl$distances[i] <- dist
-    }
-    new_tbl$distances <- unlist(new_tbl$distances)
+    distances <- sqrt((new_tbl[1] - vec[1])^2 + (new_tbl[2] - vec[2])^2 + (new_tbl[3] - vec[3])^2)
+    new_tbl$distances = unlist(distances)
     new_tbl
 }
 ```
@@ -101,14 +98,14 @@ head(dist(av_train, av_test[1, 1:3]))
 
 <div markdown="0" class="output output_html">
 <table>
-<thead><tr><th scope=col>AveragePrice</th><th scope=col>Total.Volume</th><th scope=col>Total.Bags</th><th scope=col>type</th><th scope=col>distances</th></tr></thead>
+<thead><tr><th scope=col>AveragePrice</th><th scope=col>Total Volume</th><th scope=col>Total Bags</th><th scope=col>type</th><th scope=col>distances</th></tr></thead>
 <tbody>
-	<tr><td>1.24        </td><td>594392.87   </td><td>308470.62   </td><td>conventional</td><td>1056730     </td></tr>
-	<tr><td>1.54        </td><td>207482.67   </td><td> 43218.24   </td><td>conventional</td><td>1467051     </td></tr>
-	<tr><td>1.53        </td><td>  8022.27   </td><td>  7056.93   </td><td>organic     </td><td>1669763     </td></tr>
-	<tr><td>1.30        </td><td>141880.95   </td><td> 68607.55   </td><td>conventional</td><td>1527527     </td></tr>
-	<tr><td>1.43        </td><td>  2779.20   </td><td>   458.78   </td><td>organic     </td><td>1676106     </td></tr>
-	<tr><td>1.17        </td><td>233638.96   </td><td> 68899.75   </td><td>conventional</td><td>1436890     </td></tr>
+	<tr><td>1.82        </td><td>  31363.93  </td><td> 11088.64   </td><td>organic     </td><td>  60721.88  </td></tr>
+	<tr><td>1.13        </td><td>   9466.36  </td><td>  4408.33   </td><td>organic     </td><td>  82821.97  </td></tr>
+	<tr><td>1.73        </td><td>  10842.77  </td><td>  1953.67   </td><td>organic     </td><td>  81662.56  </td></tr>
+	<tr><td>0.88        </td><td>1132112.24  </td><td>274879.88   </td><td>conventional</td><td>1073164.75  </td></tr>
+	<tr><td>0.78        </td><td>4015563.02  </td><td>369784.70   </td><td>conventional</td><td>3939919.31  </td></tr>
+	<tr><td>1.11        </td><td> 485736.10  </td><td> 97862.93   </td><td>conventional</td><td> 403282.36  </td></tr>
 </tbody>
 </table>
 
@@ -143,14 +140,14 @@ head(find_majority(av_train, av_test, 1))
 
 <div markdown="0" class="output output_html">
 <table>
-<thead><tr><th scope=col>AveragePrice</th><th scope=col>Total.Volume</th><th scope=col>Total.Bags</th><th scope=col>type</th><th scope=col>distances</th></tr></thead>
+<thead><tr><th scope=col>AveragePrice</th><th scope=col>Total Volume</th><th scope=col>Total Bags</th><th scope=col>type</th><th scope=col>distances</th></tr></thead>
 <tbody>
-	<tr><td>1.08        </td><td>1657405     </td><td>294229.0    </td><td>conventional</td><td>11875.23    </td></tr>
-	<tr><td>1.11        </td><td>1658709     </td><td>317964.5    </td><td>conventional</td><td>15631.08    </td></tr>
-	<tr><td>1.13        </td><td>1668243     </td><td>321150.0    </td><td>conventional</td><td>24025.79    </td></tr>
-	<tr><td>1.28        </td><td>1667026     </td><td>330913.3    </td><td>conventional</td><td>31005.34    </td></tr>
-	<tr><td>1.09        </td><td>1619341     </td><td>292807.5    </td><td>conventional</td><td>33788.77    </td></tr>
-	<tr><td>1.02        </td><td>1615465     </td><td>311043.7    </td><td>conventional</td><td>36281.64    </td></tr>
+	<tr><td>1.22        </td><td>91195.99    </td><td>11592.92    </td><td>conventional</td><td>1587.918    </td></tr>
+	<tr><td>1.72        </td><td>92086.00    </td><td> 8451.03    </td><td>organic     </td><td>1823.039    </td></tr>
+	<tr><td>1.98        </td><td>90125.42    </td><td>10797.14    </td><td>organic     </td><td>2023.701    </td></tr>
+	<tr><td>1.55        </td><td>91728.18    </td><td>12674.57    </td><td>conventional</td><td>2426.205    </td></tr>
+	<tr><td>1.65        </td><td>91949.26    </td><td>12857.87    </td><td>conventional</td><td>2587.133    </td></tr>
+	<tr><td>1.99        </td><td>89435.60    </td><td> 9234.73    </td><td>organic     </td><td>2841.639    </td></tr>
 </tbody>
 </table>
 
@@ -199,12 +196,9 @@ For an example, I will text how accurate the 7-nearest neighbors classifer is. T
 {:.input_area}
 ```R
 test_accuracy <- function (train, test, k) {
-    classed <- c()
-    for (i in 1:dim(test)[1]) {
-        cl <- knn(train, test, i, k)
-        classed <- c(classed, cl)
-    }
-    classed_test <- data.frame(test)
+    indices <- 1:dim(test)[1]
+    classed <- sapply(indices, (function(i){knn(train, test, i, k)}))
+    classed_test <- as_tibble(test)
     classed_test$kNN.class <- classed
     sum(classed_test$kNN.class == classed_test$type) / dim(classed_test)[1] 
 }
@@ -218,3 +212,43 @@ test_accuracy <- function (train, test, k) {
 test_accuracy(av_train, av_test, 7)
 ```
 
+
+
+<div markdown="0" class="output output_html">
+0.927710843373494
+</div>
+
+
+## 6. Determining the optimal value of $k$
+In order to determine how many nearest neigbors would be best to run on a random avocado, this second determines the optimal value of $k$ based on the training set. It will run through the classifier for odd integer values 1 through 99, and return a table with the accuracy of each value.
+
+
+
+{:.input_area}
+```R
+results <- tibble(.rows = 50)
+results$k <- seq(1, 100, by = 2)
+accuracy <- sapply(results$k, (function(k){test_accuracy(av_train, av_test, k)}))
+results$accuracy = unlist(accuracy)
+head(arrange(results, desc(accuracy)))
+```
+
+
+
+<div markdown="0" class="output output_html">
+<table>
+<thead><tr><th scope=col>k</th><th scope=col>accuracy</th></tr></thead>
+<tbody>
+	<tr><td>35       </td><td>0.9437751</td></tr>
+	<tr><td>39       </td><td>0.9437751</td></tr>
+	<tr><td>71       </td><td>0.9437751</td></tr>
+	<tr><td>73       </td><td>0.9437751</td></tr>
+	<tr><td>75       </td><td>0.9437751</td></tr>
+	<tr><td>77       </td><td>0.9437751</td></tr>
+</tbody>
+</table>
+
+</div>
+
+
+Based on this test, it appears that the 35-NN classifier is the best classifier, given that it is the most efficient and is one of the $k$ values with the highest accuracy score.
