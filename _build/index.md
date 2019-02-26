@@ -18,3 +18,4 @@ One of my favorite passtimes is to hone my computing and data-analysis skills by
 |-----|-----|
 | insurance.ipynb | This notebook focuses on an insurance data set that has information about premiums, BMI, sex, and smoker vs. non-smoker, among other things. In this notebook, I looked for linear relationships between BMI and insurance premiums using the correlation coefficient and I ran an A/B test to determine whether or not smokers are charged more in insurance premiums than are non-smokers. |
 | avocado.ipynb | **\[IN PROGRESS\]** This notebook, written in R, has a $k$-nearest neighbors classifier that classified avocados as organic or conventional using their average price, volume sold, and number of bags used. |
+| movies.ipynb | **\[IN PROGRESS\]** In this notebook, I am building a $k$-NN classifier that determines a movie's genre by analyzing the frequency of words in its synopsis. |
