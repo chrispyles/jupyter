@@ -14,11 +14,6 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 # Avocado Classifier
 This Jupyter Notebook contains the code that takes in a table with information about avocados (average price, total volumne, total bags) and classifies them as either `conventional` or `organic`. This classifier, written in R, is a $k$-nearest neighbors classifier using the cartesian distance between the point in question and the points in the training set. This notebook also contains a principal component analysis of the data to see how well the points can be represented 2-dimensionally. The data set is from [Kaggle](https://www.kaggle.com/neuromusic/avocado-prices).
 
-Contents:
-* [Principal Component Analysis](#Principal-Component-Analysis)
-* [$k$-NN Classifier](#%24k%24-NN-Classifier)
-* [Testing the Classifier](#Testing-the-Classifier)
-
 
 
 {:.input_area}
