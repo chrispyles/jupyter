@@ -189,9 +189,9 @@ Principal component analysis (PCA) is an application of the linear algebra techn
 
 $$A = U \Sigma V^T$$
 
-where $U$ and $V$ contain the set of orthonormal eigenvectors for $AA^T$ and $A^TA$, respectively, and $\Sigma$ contains the singular values (the squareroots of the eigenvalues) of $A^TA$ (and $AA^T$) arranged in descending order along the diagonal. PCA shows how relationships between the variables in a data set contribute to its total variance, and, depending on how dependent the variables are on one another, allow you to visualize a high-dimensional data set in 2 dimensions (e.g. as a scatter plot).
+where $U$ and $V$ contain the set of orthonormal eigenvectors for $AA^T$ and $A^TA$, respectively, and $\Sigma$ contains the singular values (the squareroots of the eigenvalues) of $A^TA$ (and $AA^T$) arranged in descending order along the diagonal. PCA shows how relationships between the variables in a data set contribute to its total variance, and, depending on how dependent the variables are on one another, can allow you to visualize a high-dimensional data set in 2 dimensions (e.g. as a scatter plot).
 
-To begin PCA on the `r_avocados` tibble created above, we extract the tibble from R and create a `pandas` DataFrame in Python, and then extra the desired numerical columns (all except `Date`, `type`, `year`, and `region`) as a `numpy` matrix. We the normalize the matrix (that is, center the variables about 0 by subtracting out the mean of the variable and then divided by $\sqrt{n}$, where $n$ is the number of observations). Finally, we use the `linalg` sublibrary of `numpy` to compute the SVD of `normed_avocados`.
+To begin PCA on the `r_avocados` tibble created above, we extract the tibble from R and create a `pandas` DataFrame in Python, before taking the desired numerical columns (all except `Date`, `type`, `year`, and `region`) as a `numpy` matrix. We the normalize the matrix (that is, center the variables about 0 by subtracting out the mean of the variable and then dividing by $\sqrt{n}$, where $n$ is the number of observations). Finally, we use the `linalg` sublibrary of `numpy` to compute the SVD of `normed_avocados`.
 
 
 
@@ -226,7 +226,7 @@ plt.ylabel('Variance (Component Scores)');
 
 
 
-The actual PCA is done by plotting the product of the values in the normalized matrix times the first two right-singular vectors (that is, the first two columns of $V$). Because SVD (and `np.lingalg.svd`) returns $V^T$, we need to take $(V^T)^T$ in order to be able to multiply the matrices. Then we use `seaborn` to plot a scatterplot of PC1 vs. PC2, color-coding by the `type` column.
+The actual PCA is done by plotting the product of the values in the normalized matrix times the first two right-singular vectors (that is, the first two columns of $V$). Because SVD (and `np.lingalg.svd`) returns $V^T$, we need to take $(V^T)^T$ in order to be able to multiply the matrices. Then we use `seaborn` to plot a scatterplot of PC2 vs. PC1, color-coding by the `type` column.
 
 
 
@@ -269,7 +269,7 @@ plt.subplots_adjust(top=0.9);
 This plot shows where the overplotting issue is localized in the scatterplot above. While it appears in the scatterplot that the range \[-100000, 0\] along PC1 and \[-10000, 10000\] along PC2 contain the overplotting issues, the joint plot shows that the overplotting is actually _much_ more localized than that.
 
 ## $k$-NN Classifier
-This cell selects the 4 columns we will use from the original table (three data point columns and the type column) and shuffles the rows of the csv file and separates them into a training set, to which the avocado to be classified will be compared, and a test set, to test the accuracy of the classifer once it is built. The test set will retain its `type` column so that we know what proportion of avocados the classifier gets correct. The training set has 18,000 rows and the test set has 249.
+This cell selects the 4 columns we will use from the original table (three data point columns and the `type` column) and shuffles the rows of the csv file and separates them into a training set, to which the avocado to be classified will be compared, and a test set, to test the accuracy of the classifer once it is built. The test set will retain its `type` column so that we know what proportion of avocados the classifier gets correct. The training set has 18,000 rows and the test set has 249.
 
 
 
@@ -296,7 +296,7 @@ dim(av)[1] == dim(av_train)[1] + dim(av_test)[1]
 
 
 ### Cartesian Distances
-In this section, I will define a function that finds the 3-dimensional cartesian distant between two points. This is an application of the Pythagorean Theorem. The distance between two points $(x_1, y_1, z_1)$ and $(x_2, y_2, z_2)$ is
+In this section, I will define a function that finds the 3-dimensional cartesian distance between two points. This is an application of the Pythagorean Theorem. The distance between two points $(x_1, y_1, z_1)$ and $(x_2, y_2, z_2)$ is
 
 $$d = \sqrt{(x_2-x_1)^2 + (y_2-y_1)^2 + (z_2-z_1)^2}$$
 
@@ -585,7 +585,7 @@ knn <- function (df, df2, row, k) {
 
 
 ## Testing the Classifier
-For an example, I will text how accurate the 7-nearest neighbors classifer is. The `test_accuracy` function defined below runs the classifier on all rows of the `av_test` table (the entire test set), and then returns the proportion of rows that were correctly classified.
+For an example, I will test how accurate the 7-nearest neighbors classifer is. The `test_accuracy` function defined below runs the classifier on all rows of the `av_test` table (the entire test set), and then returns the proportion of rows that were correctly classified.
 
 
 
@@ -620,7 +620,7 @@ test_accuracy(av_train, av_test, 7)
 
 
 ### Optimizing $k$
-In order to determine how many nearest neigbors would be best to run on a random avocado, this second determines the optimal value of $k$ based on the training set. It will run through the classifier for odd integer values 1 through 99, and return a table with the accuracy of each value.
+In order to determine how many nearest neigbors would be best to run on a random avocado, the cell below creates a table with the accuracy for each value of $k$. It will run through the classifier for odd integer values 1 through 99, and return a table with the accuracy of each value.
 
 
 
