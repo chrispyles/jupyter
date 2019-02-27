@@ -12,6 +12,9 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 ---
 
 # Insurance Data
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/chrispyles/jupyter/master?filepath=content%2Fnotebooks%insurance%insurance.ipynb)
+
 This Jupyter Notebook takes an insurance data set from Kaggle and looks into the relationships between the different parameters given. First, we check for a correlation (a linear relationship) between BMI and insurance charges, and then we see if being a smoker influences what you're charged by insurance companies using an A/B Test.
 
 

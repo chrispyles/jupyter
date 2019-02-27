@@ -6,12 +6,15 @@ prev_page:
   url: /notebooks/avocado/avocado
   title: 'avocado.ipynb'
 next_page:
-  url: 
-  title: ''
+  url: /notebooks/graduate-admissions/graduate-admissions
+  title: 'graduate-admissions.ipynb'
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
 # Movie Genre Predictor
+
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/chrispyles/jupyter/master?filepath=content%2Fnotebooks%2Fmovies%2Fmovies.ipynb)
+
 In this Jupyter Notebook, I will build a $k$-nearest neighbors classifier that will determine the genre of a movie based on its synopsis. The [Wikipedia Movie Plots data set](https://www.kaggle.com/jrobischon/wikipedia-movie-plots) is used in order to generate the training set for the classifier, and I will build my own test set from [IMDB](https://imdb.com). The classifier will work by looking at the frequencies of words in the synposes of movies from each genre.
 
 1. [The Question](#question)

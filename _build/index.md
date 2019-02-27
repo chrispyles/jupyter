@@ -12,6 +12,7 @@ comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /con
 ---
 
 # Projects and Jupyter Notebooks
+
 One of my favorite passtimes is to hone my computing and data-analysis skills by doing some projects of my own that utilize the concepts I learned in my data science courses to answer real-world questions. While some of them are kind-of frivolous (lookin' at you, avocado classifier), they all serve to underpin the skills that I have been learning and to keep my expertise fresh and active.
 
 | Notebook | Summary |
