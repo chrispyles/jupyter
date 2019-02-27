@@ -137,7 +137,7 @@ admissions.head()
 
 
 ## Principal Component Analysis
-Principal component analysis (PCA) is a tool to help visualize higher-dimensional data in 2 dimensions (e.g. as a scatterplot). It is founded in the linear algebra technique of singular value decomposition. For a detailed explanation of PCA, see the PCA section of my [avocado notebook]("../avocado/avocado#principal-component-analysis"). To begin performing the PCA, we first make a scree plot to determine if the data can be well represented in 2 dimensions.
+Principal component analysis (PCA) is a tool to help visualize higher-dimensional data in 2 dimensions (e.g. as a scatterplot). It is founded in the linear algebra technique of singular value decomposition. For a detailed explanation of PCA, see the PCA section of my [avocado notebook](../avocado/avocado#principal-component-analysis). To begin performing the PCA, we first make a scree plot to determine if the data can be well represented in 2 dimensions.
 
 
 
