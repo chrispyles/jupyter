@@ -199,7 +199,7 @@ To begin PCA on the `r_avocados` tibble created above, we extract the tibble fro
 ```python
 avocado = %Rget r_avocado
 avocado_attributes = avocado.iloc[:,1:10].values
-normed_avocados = (avocado_attributes - np.mean(avocado_attributes)) / np.sqrt(len(avocado_attributes)) 
+normed_avocados = (avocado_attributes - np.mean(avocado_attributes)) / np.sqrt(avocado_attributes.shape[0]) 
 u, sigma, vt = np.linalg.svd(normed_avocados, full_matrices=False)
 ```
 
