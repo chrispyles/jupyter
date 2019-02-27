@@ -250,16 +250,18 @@ plt.ylabel("Principal Component 2");
 
 
 
-It looks like there is actually a lot of overlap, especially closer to 0 along PC1. So, in order to reduce overplotting, we'll use `sns.jointplot()` to plot a topographical version of the overplotted portion of the scatterplot to indicate the density of the points. This will also use kernel density estimation to estimate the density of each of the principal components.
+It looks like there is actually a lot of overlap, especially closer to 0 along PC1. So, in order to reduce overplotting, we'll use `sns.kdeplot()` to plot a topographical version of the overplotted portion of the scatterplot to indicate the density of the points. This will use kernel density estimation to estimate the density of each of the principal components to produce contour plots of the 3D surface.
 
 
 
 {:.input_area}
 ```python
-ax = sns.jointplot(x = avocados_2d[:, 0], y = avocados_2d[:, 1], kind = 'kde', xlim = (-20000, 0), ylim = (0, 5000))
-ax.set_axis_labels("Principal Component 1", "Principal Component 2")
-plt.suptitle("PC2 vs. PC1 with PC1 in [-20000, 0] and PC2 in [0, 5000]")
-plt.subplots_adjust(top=0.9);
+ax = sns.kdeplot(avocados_2d[:, 0], avocados_2d[:, 1])
+plt.xlim([-15000, 0])
+plt.ylim([2000, 5000])
+plt.xlabel('Principal Component 1')
+plt.ylabel('Principal Component 2')
+plt.title("PC2 vs. PC1 with PC1 in [-15000, 0] and PC2 in [2000, 5000]");
 ```
 
 
