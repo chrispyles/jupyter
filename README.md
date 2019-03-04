@@ -5,3 +5,5 @@
 _Collection of Data Science Projects by Christopher Pyles_
 
 This repository contains a collection of data-oriented projects that I work on in my spare time. As of now, most of the notebooks are written in Python, although the avocado classifier has a version written in R. You can see the published versions of these notebooks online at [jupyter.cpyles.com](https://jupyter.cpyles.com).
+
+The notebooks and other relevent files are stored in the [`content/notebooks`](./content/notebooks) directory.
