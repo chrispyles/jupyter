@@ -36,7 +36,7 @@ use_hide_code_button      : true  # If True, a small button appears to the right
 show_sidebar              : true  # Show the sidebar. Only set to false if your only wish to host a single page.
 collapse_inactive_chapters: true  # Whether to collapse the inactive chapters in the sidebar
 # textbook_logo_link        : https://jupyter.cpyles.com  # A link for the logo.
-sidebar_footer_text       : 'Powered by <a href="https://github.com/jupyter/jupyter-book">Jupyter Book</a>'
+sidebar_footer_text       : "<a href='https://mybinder.org/v2/gh/chrispyles/jupyter/master?filepath=content%2Fnotebooks'><img src='https://mybinder.org/badge_logo.svg' /></a>" # 'Powered by <a href="https://github.com/jupyter/jupyter-book">Jupyter Book</a>'
 number_toc_chapters       : false  # Whether to add numbers to chapterse in your Table of Contents. If true, you can control this at the Chapter level in _data/toc.yml
 
 # Search settings

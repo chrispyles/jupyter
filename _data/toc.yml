@@ -48,10 +48,10 @@
     - title: graduate-admissions.ipynb
       url: notebooks/graduate-admissions/graduate-admissions
 
-- title: Launch in Binder
-  url: https://mybinder.org/v2/gh/chrispyles/jupyter/master?filepath=content%2Fnotebooks
-  external: true
-  not_numbered: true
+# - title: Launch in Binder
+#   url: https://mybinder.org/v2/gh/chrispyles/jupyter/master?filepath=content%2Fnotebooks
+#   external: true
+#   not_numbered: true
 
 
 
