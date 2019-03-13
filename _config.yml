@@ -131,6 +131,7 @@ exclude:
   - environment.yml
   - README.md
   - requirements.txt
+  - LICENSE
 
 plugins:
   - jekyll-redirect-from
