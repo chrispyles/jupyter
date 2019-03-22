@@ -1,0 +1,21 @@
+[NotebookApp | WARNING] No nbgrader_config.py file found (rerun with --debug to see where nbgrader is looking)
+[NotebookApp | INFO] Loading the validate_assignment nbgrader serverextension
+[NotebookApp | INFO] Serving notebooks from local directory: /Users/chrispyles/GitHub/jupyter
+[NotebookApp | INFO] 0 active kernels
+[NotebookApp | INFO] The Jupyter Notebook is running at:
+[NotebookApp | INFO] http://localhost:8888/
+[NotebookApp | INFO] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[NotebookApp | INFO] Kernel started: 865f3f49-fa07-40b5-9b3f-c03d2ea064c5
+[NotebookApp | INFO] Adapting to protocol v5.1 for kernel 865f3f49-fa07-40b5-9b3f-c03d2ea064c5
+[NotebookApp | INFO] Saving file at /content/index.ipynb
+[NotebookApp | INFO] Saving file at /content/index.ipynb
+[NotebookApp | INFO] Starting buffering for 865f3f49-fa07-40b5-9b3f-c03d2ea064c5:2a2061d732d645ea8585716fc0a6aca7
+[NotebookApp | WARNING] Notebook content/notebooks/graduate-admissions/graduate-admissions.ipynb is not trusted
+[NotebookApp | INFO] Kernel started: fd06c208-5e66-4eb5-8b07-089fd7d3caf7
+[NotebookApp | INFO] Adapting to protocol v5.1 for kernel fd06c208-5e66-4eb5-8b07-089fd7d3caf7
+[NotebookApp | INFO] Starting buffering for fd06c208-5e66-4eb5-8b07-089fd7d3caf7:0ddff2b962494c6397fa2ceb18fc5757
+[NotebookApp | INFO] interrupted
+[NotebookApp | CRITICAL] Shutdown confirmed
+[NotebookApp | INFO] Shutting down 2 kernels
+[NotebookApp | INFO] Kernel shutdown: 865f3f49-fa07-40b5-9b3f-c03d2ea064c5
+[NotebookApp | INFO] Kernel shutdown: fd06c208-5e66-4eb5-8b07-089fd7d3caf7

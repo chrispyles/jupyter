@@ -40,13 +40,14 @@
       url: notebooks/insurance/insurance
     - title: avocado.ipynb
       url: notebooks/avocado/avocado
+    - title: graduate-admissions.ipynb
+      url: notebooks/graduate-admissions/graduate-admissions
     - title: movies.ipynb
       url: notebooks/movies/movies
       # sections:
       #   - title: editing_dictionary.ipynb
       #     url: notebooks/movies/editing_dictionary
-    - title: graduate-admissions.ipynb
-      url: notebooks/graduate-admissions/graduate-admissions
+
 
 # - title: Launch in Binder
 #   url: https://mybinder.org/v2/gh/chrispyles/jupyter/master?filepath=content%2Fnotebooks
