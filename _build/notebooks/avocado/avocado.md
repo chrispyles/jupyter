@@ -6,8 +6,8 @@ prev_page:
   url: /notebooks/insurance/insurance
   title: 'insurance.ipynb'
 next_page:
-  url: /notebooks/movies/movies
-  title: 'movies.ipynb'
+  url: /notebooks/graduate-admissions/graduate-admissions
+  title: 'graduate-admissions.ipynb'
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 

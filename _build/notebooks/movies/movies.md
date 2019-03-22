@@ -3,11 +3,11 @@ interact_link: content/notebooks/movies/movies.ipynb
 kernel_name: python3
 title: 'movies.ipynb'
 prev_page:
-  url: /notebooks/avocado/avocado
-  title: 'avocado.ipynb'
-next_page:
   url: /notebooks/graduate-admissions/graduate-admissions
   title: 'graduate-admissions.ipynb'
+next_page:
+  url: 
+  title: ''
 comment: "***PROGRAMMATICALLY GENERATED, DO NOT EDIT. SEE ORIGINAL FILES IN /content***"
 ---
 
