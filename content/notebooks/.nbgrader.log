@@ -1,0 +1,20 @@
+[NotebookApp | WARNING] No nbgrader_config.py file found (rerun with --debug to see where nbgrader is looking)
+[NotebookApp | INFO] Loading the validate_assignment nbgrader serverextension
+[NotebookApp | INFO] Serving notebooks from local directory: /Users/chrispyles/GitHub/jupyter/content/notebooks
+[NotebookApp | INFO] 0 active kernels
+[NotebookApp | INFO] The Jupyter Notebook is running at:
+[NotebookApp | INFO] http://localhost:8888/
+[NotebookApp | INFO] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[NotebookApp | INFO] Kernel started: 96ee7c49-58aa-4288-a3a9-ba7abc5e39fe
+[NotebookApp | INFO] Adapting to protocol v5.1 for kernel 96ee7c49-58aa-4288-a3a9-ba7abc5e39fe
+[NotebookApp | INFO] Starting buffering for 96ee7c49-58aa-4288-a3a9-ba7abc5e39fe:5c50d5c4a96f4ebe844f5560949779eb
+[NotebookApp | INFO] Kernel restarted: 96ee7c49-58aa-4288-a3a9-ba7abc5e39fe
+[NotebookApp | INFO] Adapting to protocol v5.1 for kernel 96ee7c49-58aa-4288-a3a9-ba7abc5e39fe
+[NotebookApp | INFO] Restoring connection for 96ee7c49-58aa-4288-a3a9-ba7abc5e39fe:5c50d5c4a96f4ebe844f5560949779eb
+[NotebookApp | INFO] Replaying 3 buffered messages
+[NotebookApp | INFO] Saving file at /suicide/*NB TEMPLATE*.ipynb
+[NotebookApp | INFO] Starting buffering for 96ee7c49-58aa-4288-a3a9-ba7abc5e39fe:5c50d5c4a96f4ebe844f5560949779eb
+[NotebookApp | INFO] interrupted
+[NotebookApp | CRITICAL] Shutdown confirmed
+[NotebookApp | INFO] Shutting down 1 kernel
+[NotebookApp | INFO] Kernel shutdown: 96ee7c49-58aa-4288-a3a9-ba7abc5e39fe
