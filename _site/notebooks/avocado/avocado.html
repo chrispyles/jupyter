@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,minimum-scale=1">
+
+  <title>avocado.ipynb</title>
+  <meta name="description" content="Avocado Classifier">
+
+  <link rel="canonical" href="http://0.0.0.0:4000/notebooks/avocado/avocado.html">
+  <link rel="alternate" type="application/rss+xml" title="Chris Pyles" href="http://0.0.0.0:4000/feed.xml">
+
+  <meta property="og:url"         content="http://0.0.0.0:4000/notebooks/avocado/avocado.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="avocado.ipynb" />
+<meta property="og:description" content="Avocado Classifier" />
+<meta property="og:image"       content="" />
+
+
+  <script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "NewsArticle",
+  "mainEntityOfPage":
+    "http://0.0.0.0:4000/notebooks/avocado/avocado.html",
+  "headline":
+    "avocado.ipynb",
+  "datePublished":
+    "2019-04-18T18:39:31-05:00",
+  "dateModified":
+    "2019-04-18T18:39:31-05:00",
+  "description":
+    "Avocado Classifier",
+  "author": {
+    "@type": "Person",
+    "name": "Christopher Pyles"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Data 100 at UC Berkeley",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "http://0.0.0.0:4000",
+      "width": 60,
+      "height": 60
+    }
+  },
+  "image": {
+    "@type": "ImageObject",
+    "url": "http://0.0.0.0:4000",
+    "height": 60,
+    "width": 60
+  }
+}
+
+  </script>
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css ">
+  <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png">
+
+  <!-- <link rel="manifest" href="/manifest.json"> -->
+  <!-- <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#efae0a"> -->
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+  <meta name="theme-color" content="#233947">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="https://cpyles.com/assets/favicon.ico">
+
+  <!-- MathJax Config -->
+  <!-- Allow inline math using $ and automatically break long math lines -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true,
+        processEnvironments: true
+    },
+    CommonHTML: {
+        linebreaks: {
+            automatic: true,
+        },
+    },
+});
+</script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_CHTML' async></script>
+
+  <!-- DOM updating function -->
+  <script>
+const runWhenDOMLoaded = cb => {
+  if (document.readyState != 'loading') {
+    cb()
+  } else if (document.addEventListener) {
+    document.addEventListener('DOMContentLoaded', cb)
+  } else {
+    document.attachEvent('onreadystatechange', function() {
+      if (document.readyState == 'complete') cb()
+    })
+  }
+}
+
+// Helper function to init things quickly
+initFunction = function(myfunc) {
+  runWhenDOMLoaded(myfunc);
+  document.addEventListener('turbolinks:load', myfunc);
+};
+</script>
+
+  <!-- Define some javascript variables that will be useful in other javascript -->
+  <script>
+    const site_basename = '';
+  </script>
+
+  <!-- Add AnchorJS to let headers be linked -->
+  <script src="/assets/js/anchor.min.js"  type="text/javascript"></script>
+  <script>
+
+initFunction(function () {
+    anchors.add("main h1, main h2, main h3, main h4")
+});
+
+</script>
+
+  <!-- Include Turbolinks to make page loads fast -->
+  <!-- https://github.com/turbolinks/turbolinks -->
+  <script src="/assets/js/turbolinks.js" async></script>
+  <meta name="turbolinks-cache-control" content="no-cache">
+
+  <!-- Load nbinteract for widgets -->
+  <script src="https://unpkg.com/nbinteract-core" async></script>
+
+  <!-- Load Thebelab for interactive widgets -->
+  <!-- Include Thebelab for interactive code if it's enabled -->
+
+
+  <!-- Google analytics -->
+  <script src="/assets/js/ga.js" async></script>
+
+  <!-- Clipboard copy button -->
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" async></script>
+
+  <!-- Load JS that depends on site variables -->
+  <script>
+/**
+ * Set up copy/paste for code blocks
+ */
+const codeCellId = index => `codecell${index}`
+
+const clipboardButton = id =>
+  `<a class="btn copybtn o-tooltip--left" data-tooltip="Copy" data-clipboard-target="#${id}">
+    <img src="/assets/images/copy-button.svg" alt="Copy to clipboard">
+  </a>`
+
+// Clears selected text since ClipboardJS will select the text when copying
+const clearSelection = () => {
+  if (window.getSelection) {
+    window.getSelection().removeAllRanges()
+  } else if (document.selection) {
+    document.selection.empty()
+  }
+}
+
+// Changes tooltip text for two seconds, then changes it back
+const temporarilyChangeTooltip = (el, newText) => {
+  const oldText = el.getAttribute('data-tooltip')
+  el.setAttribute('data-tooltip', newText)
+  setTimeout(() => el.setAttribute('data-tooltip', oldText), 2000)
+}
+
+const addCopyButtonToCodeCells = () => {
+  // If ClipboardJS hasn't loaded, wait a bit and try again. This
+  // happens because we load ClipboardJS asynchronously.
+  if (window.ClipboardJS === undefined) {
+    setTimeout(addCopyButtonToCodeCells, 250)
+    return
+  }
+
+  const codeCells = document.querySelectorAll('div.highlighter-rouge:not(.output) pre')
+  codeCells.forEach((codeCell, index) => {
+    const id = codeCellId(index)
+    codeCell.setAttribute('id', id)
+    if (document.querySelector(`pre#${id} + a`) == null) {
+      codeCell.insertAdjacentHTML('afterend', clipboardButton(id));
+    }
+  })
+
+  const clipboard = new ClipboardJS('.copybtn')
+  clipboard.on('success', event => {
+    clearSelection()
+    temporarilyChangeTooltip(event.trigger, 'Copied!')
+  })
+
+  clipboard.on('error', event => {
+    temporarilyChangeTooltip(event.trigger, 'Failed to copy')
+  })
+
+  // Get rid of clipboard before the next page visit to avoid memory leak
+  document.addEventListener('turbolinks:before-visit', () =>
+    clipboard.destroy()
+  )
+}
+
+initFunction(addCopyButtonToCodeCells);
+</script>
+
+  <!-- Hide cell code -->
+  
+<script>
+/**
+Add buttons to hide code cells
+*/
+
+
+var setCodeCellVisibility = function(inputField, kind) {
+    // Update the image and class for hidden
+    var id = inputField.getAttribute('data-id');
+    var codeCell = document.querySelector(`#${id}`);
+
+    if (kind === "visible") {
+        codeCell.classList.remove('hidden');
+        inputField.checked = true;
+    } else {
+        codeCell.classList.add('hidden');
+        inputField.checked = false;
+    }
+}
+
+var toggleCodeCellVisibility = function (event) {
+    // The label is clicked, and now we decide what to do based on the input field's clicked status
+    if (event.target.tagName === "LABEL") {
+        var inputField = event.target.previousElementSibling;
+    } else {
+        // It is the span inside the target
+        var inputField = event.target.parentElement.previousElementSibling;
+    }
+
+    if (inputField.checked === true) {
+        setCodeCellVisibility(inputField, "visible");
+    } else {
+        setCodeCellVisibility(inputField, "hidden");
+    }
+}
+
+
+// Button constructor
+const hideCodeButton = id => `<input class="hidebtn" type="checkbox" id="hidebtn${id}" data-id="${id}"><label title="Toggle cell" for="hidebtn${id}" class="plusminus"><span class="pm_h"></span><span class="pm_v"></span></label>`
+
+var addHideButton = function () {
+  // If a hide button is already added, don't add another
+  if (document.querySelector('div.hidecode input') !== null) {
+      return;
+  }
+
+  // Find the input cells and add a hide button
+  document.querySelectorAll('div.input_area div.highlight').forEach(function (item, index) {
+    if (!item.parentElement.classList.contains("hidecode")) {
+        // Skip the cell if it doesn't have a hidecode class
+        return;
+    }
+
+    const id = codeCellId(index)
+    item.setAttribute('id', id);
+    item.insertAdjacentHTML('afterend', hideCodeButton(id))
+
+    // Set up the visibility toggle
+    hideLink = document.querySelector(`#${id} + input + label`);
+    hideLink.addEventListener('click', toggleCodeCellVisibility)
+  });
+}
+
+
+// Initialize the hide buttos
+var initHiddenCells = function () {
+    // Add hide buttons to the cells
+    addHideButton();
+
+    // Toggle the code cells that should be hidden
+    document.querySelectorAll('div.hidecode input').forEach(function (item) {
+        setCodeCellVisibility(item, 'hidden');
+        item.checked = true;
+    })
+}
+
+initFunction(initHiddenCells);
+
+</script>
+
+
+  <!-- Load custom website scripts -->
+  <script src="/assets/js/scripts.js" async></script>
+
+  <!-- Load custom user CSS and JS  -->
+  <script src="/assets/custom/custom.js" async></script>
+  <link rel="stylesheet" href="/assets/custom/custom.css">
+
+  <!-- Update interact links w/ REST param, is defined in includes so we can use templates -->
+  
+
+  <!-- Lunr search code - will only be executed on the /search page -->
+  <script src="/assets/js/lunr/lunr.min.js" type="text/javascript"></script>
+  <script>var initQuery = function() {
+  // See if we have a search box
+  var searchInput = document.querySelector('input#lunr_search');
+  if (searchInput === null) {
+    return;
+  }
+
+  // Function to parse our lunr cache
+  var idx = lunr(function () {
+    this.field('title')
+    this.field('excerpt')
+    this.field('categories')
+    this.field('tags')
+    this.ref('id')
+
+    this.pipeline.remove(lunr.trimmer)
+
+    for (var item in store) {
+      this.add({
+        title: store[item].title,
+        excerpt: store[item].excerpt,
+        categories: store[item].categories,
+        tags: store[item].tags,
+        id: item
+      })
+    }
+  });
+
+  // Run search upon keyup
+  searchInput.addEventListener('keyup', function () {
+    var resultdiv = document.querySelector('#results');
+    var query = document.querySelector("input#lunr_search").value.toLowerCase();
+    var result =
+      idx.query(function (q) {
+        query.split(lunr.tokenizer.separator).forEach(function (term) {
+          q.term(term, { boost: 100 })
+          if(query.lastIndexOf(" ") != query.length-1){
+            q.term(term, {  usePipeline: false, wildcard: lunr.Query.wildcard.TRAILING, boost: 10 })
+          }
+          if (term != ""){
+            q.term(term, {  usePipeline: false, editDistance: 1, boost: 1 })
+          }
+        })
+      });
+
+      // Empty the results div
+      while (resultdiv.firstChild) {
+        resultdiv.removeChild(resultdiv.firstChild);
+      }
+
+    resultdiv.insertAdjacentHTML('afterbegin', '<p class="results__found">'+result.length+' Result(s) found</p>');
+    for (var item in result) {
+      var ref = result[item].ref;
+      if(store[ref].teaser){
+        var searchitem =
+          '<div class="list__item">'+
+            '<article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">'+
+              '<h2 class="archive__item-title" itemprop="headline">'+
+                '<a href="'+store[ref].url+'" rel="permalink">'+store[ref].title+'</a>'+
+              '</h2>'+
+              '<div class="archive__item-teaser">'+
+                '<img src="'+store[ref].teaser+'" alt="">'+
+              '</div>'+
+              '<p class="archive__item-excerpt" itemprop="description">'+store[ref].excerpt.split(" ").splice(0,20).join(" ")+'...</p>'+
+            '</article>'+
+          '</div>';
+      }
+      else{
+    	  var searchitem =
+          '<div class="list__item">'+
+            '<article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">'+
+              '<h2 class="archive__item-title" itemprop="headline">'+
+                '<a href="'+store[ref].url+'" rel="permalink">'+store[ref].title+'</a>'+
+              '</h2>'+
+              '<p class="archive__item-excerpt" itemprop="description">'+store[ref].excerpt.split(" ").splice(0,20).join(" ")+'...</p>'+
+            '</article>'+
+          '</div>';
+      }
+      resultdiv.insertAdjacentHTML('beforeend', searchitem);
+    }
+  });
+};
+
+initFunction(initQuery);
+</script>
+</head>
+
+  <body>
+    <!-- .js-show-sidebar shows sidebar by default -->
+    <div id="js-textbook" class="c-textbook js-show-sidebar">
+      
+
+
+
+<nav id="js-sidebar" class="c-textbook__sidebar">
+  
+  <h2 class="c-sidebar__title">Chris Pyles</h2>
+  <ul class="c-sidebar__chapters">
+    
+      
+      
+
+      
+      
+
+      
+      
+      <li class="c-sidebar__chapter">
+        <a class="c-sidebar__entry "
+          href="/index.html"
+        >
+          
+          Projects and Jupyter Notebooks
+        </a>
+
+        
+
+          
+          
+          
+          
+
+          
+
+          <ul class="c-sidebar__sections ">
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry "
+                  href="/notebooks/insurance/insurance.html"
+                >
+                  
+                  insurance.ipynb
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry c-sidebar__entry--active"
+                  href="/notebooks/avocado/avocado.html"
+                >
+                  
+                  avocado.ipynb
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry "
+                  href="/notebooks/graduate-admissions/graduate-admissions.html"
+                >
+                  
+                  graduate-admissions.ipynb
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+              
+              
+
+              <li class="c-sidebar__section">
+                <a class="c-sidebar__entry "
+                  href="/notebooks/movies/movies.html"
+                >
+                  
+                  movies.ipynb
+                </a>
+
+                
+                
+
+              </li>
+              
+            
+          </ul>
+        
+      </li>
+
+      
+    
+  </ul>
+  <p class="sidebar_footer"><a href='https://mybinder.org/v2/gh/chrispyles/jupyter/master?filepath=content%2Fnotebooks' target='_blank'><img src='https://mybinder.org/badge_logo.svg' /></a></p>
+</nav>
+
+      
+      <!-- Shamelessly copied from minimal mistakes -->
+
+
+<!-- TOC will only show up if it has at least one item -->
+
+
+  <aside class="sidebar__right">
+    <nav class="onthispage">
+      <header><h4 class="nav__title"><i class="fa fa-list"></i>   On this page</h4></header>
+      <ul class="toc__menu">
+  <li><a href="#principal-component-analysis">Principal Component Analysis</a>
+    <ul>
+      <li><a href="#scree-plot">Scree Plot</a></li>
+    </ul>
+  </li>
+  <li><a href="#k-nn-classifier">$k$-NN Classifier</a>
+    <ul>
+      <li><a href="#cartesian-distances">Cartesian Distances</a></li>
+      <li><a href="#majority-classification">Majority Classification</a></li>
+    </ul>
+  </li>
+  <li><a href="#testing-the-classifier">Testing the Classifier</a>
+    <ul>
+      <li><a href="#optimizing-k">Optimizing $k$</a></li>
+    </ul>
+  </li>
+</ul>
+    </nav>
+  </aside>
+
+
+      
+      <main class="c-textbook__page" tabindex="-1">
+          <div class="o-wrapper">
+            <div class="c-sidebar-toggle">
+  <!-- We show the sidebar by default so we use .is-active -->
+  <button
+    id="js-sidebar-toggle"
+    class="hamburger hamburger--arrowalt is-active"
+  >
+    <span class="hamburger-box">
+      <span class="hamburger-inner"></span>
+    </span>
+    <span class="c-sidebar-toggle__label">Toggle Sidebar</span>
+  </button>
+</div>
+
+            
+<div class="buttons">
+
+
+
+
+</div>
+
+
+            <div class="c-textbook__content">
+              <h1 id="avocado-classifier">Avocado Classifier</h1>
+
+<p>This Jupyter Notebook contains the code that takes in a table with information about avocados (average price, total volumne, total bags) and classifies them as either <code class="highlighter-rouge">conventional</code> or <code class="highlighter-rouge">organic</code>. This classifier, written in R, is a $k$-nearest neighbors classifier using the cartesian distance between the point in question and the points in the training set. This notebook also contains a principal component analysis of the data to see how well the points can be represented 2-dimensionally. The data set is from <a href="https://www.kaggle.com/neuromusic/avocado-prices">Kaggle</a>.</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%</span><span class="n">load_ext</span> <span class="n">rpy2</span><span class="o">.</span><span class="n">ipython</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="n">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+</code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%</span><span class="n">R</span> <span class="n">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span>
+
+<span class="o">%</span><span class="n">R</span> <span class="n">r_avocado</span> <span class="o">&lt;-</span> <span class="n">read_csv</span><span class="p">(</span><span class="s">'avocado.csv'</span><span class="p">)</span>
+
+<span class="c"># will create a placeholder variable tbl so that the tibbles</span>
+<span class="c"># can be exported to Python to be displayed nicely; will reuse</span>
+<span class="c"># this variable throughout the notebook</span>
+<span class="o">%</span><span class="n">R</span> <span class="n">tbl</span> <span class="o">&lt;-</span> <span class="n">head</span><span class="p">(</span><span class="n">r_avocado</span><span class="p">)</span>
+<span class="o">%</span><span class="n">Rget</span> <span class="n">tbl</span>
+</code></pre></div></div>
+
+<div class="output output_html">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>AveragePrice</th>
+      <th>Total Volume</th>
+      <th>4046</th>
+      <th>4225</th>
+      <th>4770</th>
+      <th>Total Bags</th>
+      <th>Small Bags</th>
+      <th>Large Bags</th>
+      <th>XLarge Bags</th>
+      <th>type</th>
+      <th>year</th>
+      <th>region</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>16796.0</td>
+      <td>1.33</td>
+      <td>64236.62</td>
+      <td>1036.74</td>
+      <td>54454.85</td>
+      <td>48.16</td>
+      <td>8696.87</td>
+      <td>8603.62</td>
+      <td>93.25</td>
+      <td>0.0</td>
+      <td>conventional</td>
+      <td>2015.0</td>
+      <td>Albany</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>16789.0</td>
+      <td>1.35</td>
+      <td>54876.98</td>
+      <td>674.28</td>
+      <td>44638.81</td>
+      <td>58.33</td>
+      <td>9505.56</td>
+      <td>9408.07</td>
+      <td>97.49</td>
+      <td>0.0</td>
+      <td>conventional</td>
+      <td>2015.0</td>
+      <td>Albany</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>16782.0</td>
+      <td>0.93</td>
+      <td>118220.22</td>
+      <td>794.70</td>
+      <td>109149.67</td>
+      <td>130.50</td>
+      <td>8145.35</td>
+      <td>8042.21</td>
+      <td>103.14</td>
+      <td>0.0</td>
+      <td>conventional</td>
+      <td>2015.0</td>
+      <td>Albany</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>16775.0</td>
+      <td>1.08</td>
+      <td>78992.15</td>
+      <td>1132.00</td>
+      <td>71976.41</td>
+      <td>72.58</td>
+      <td>5811.16</td>
+      <td>5677.40</td>
+      <td>133.76</td>
+      <td>0.0</td>
+      <td>conventional</td>
+      <td>2015.0</td>
+      <td>Albany</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>16768.0</td>
+      <td>1.28</td>
+      <td>51039.60</td>
+      <td>941.48</td>
+      <td>43838.39</td>
+      <td>75.78</td>
+      <td>6183.95</td>
+      <td>5986.26</td>
+      <td>197.69</td>
+      <td>0.0</td>
+      <td>conventional</td>
+      <td>2015.0</td>
+      <td>Albany</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>16761.0</td>
+      <td>1.26</td>
+      <td>55979.78</td>
+      <td>1184.27</td>
+      <td>48067.99</td>
+      <td>43.61</td>
+      <td>6683.91</td>
+      <td>6556.47</td>
+      <td>127.44</td>
+      <td>0.0</td>
+      <td>conventional</td>
+      <td>2015.0</td>
+      <td>Albany</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+<h2 id="principal-component-analysis">Principal Component Analysis</h2>
+<p>Principal component analysis (PCA) is an application of the linear algebra technique of singular value decomposition (SVD), which breaks a matrix down into the product of three matrices:</p>
+
+<script type="math/tex; mode=display">A = U \Sigma V^T</script>
+
+<p>where $U$ and $V$ contain the set of orthonormal eigenvectors for $AA^T$ and $A^TA$, respectively, and $\Sigma$ contains the singular values (the squareroots of the eigenvalues) of $A^TA$ (and $AA^T$) arranged in descending order along the diagonal. PCA shows how relationships between the variables in a data set contribute to its total variance, and, depending on how dependent the variables are on one another, can allow you to visualize a high-dimensional data set in 2 dimensions (e.g. as a scatter plot).</p>
+
+<p>To begin PCA on the <code class="highlighter-rouge">r_avocados</code> tibble created above, we extract the tibble from R and create a <code class="highlighter-rouge">pandas</code> DataFrame in Python, before taking the desired numerical columns (all except <code class="highlighter-rouge">Date</code>, <code class="highlighter-rouge">type</code>, <code class="highlighter-rouge">year</code>, and <code class="highlighter-rouge">region</code>) as a <code class="highlighter-rouge">numpy</code> matrix. We the normalize the matrix (that is, center the variables about 0 by subtracting out the mean of the variable and then dividing by $\sqrt{n}$, where $n$ is the number of observations). Finally, we use the <code class="highlighter-rouge">linalg</code> sublibrary of <code class="highlighter-rouge">numpy</code> to compute the SVD of <code class="highlighter-rouge">normed_avocados</code>.</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">avocado</span> <span class="o">=</span> <span class="o">%</span><span class="n">Rget</span> <span class="n">r_avocado</span>
+<span class="n">avocado_attributes</span> <span class="o">=</span> <span class="n">avocado</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">1</span><span class="p">:</span><span class="mi">10</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">normed_avocados</span> <span class="o">=</span> <span class="p">(</span><span class="n">avocado_attributes</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">avocado_attributes</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">avocado_attributes</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> 
+<span class="n">u</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">vt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">normed_avocados</span><span class="p">,</span> <span class="n">full_matrices</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="scree-plot">Scree Plot</h3>
+<p>While you can apply PCA to any numerical data set, it is important to know whether or not PCA accurately reflects changes in the data; that is, can you reduce the dimension of the data set so much without (much) loss of generality? The way to check this is to plot a “scree plot” of the singular values, which is just a plot of the squares of the values in $\Sigma$ versus the principal component number (i.e. the columber number in $\Sigma$). If the first 1 or 2 principal components are very high in the $y$ direction relative to the other principal components, then you can get a pretty good representation of your data in 2D.</p>
+
+<p>Looking at the plot below, because the first principal component is so high relative to all the others, we should be OK to perform PCA on this data set.</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sns</span><span class="o">.</span><span class="n">lineplot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">y</span> <span class="o">=</span> <span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Scree Plot of Principal Components'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Principal Component Number'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Variance (Component Scores)'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p class="output output_png"><img src="../../images/notebooks/avocado/avocado_6_0.png" alt="png" /></p>
+
+<p>The actual PCA is done by plotting the product of the values in the normalized matrix times the first two right-singular vectors (that is, the first two columns of $V$). Because SVD (and <code class="highlighter-rouge">np.lingalg.svd</code>) returns $V^T$, we need to take $(V^T)^T$ in order to be able to multiply the matrices. Then we use <code class="highlighter-rouge">seaborn</code> to plot a scatterplot of PC2 vs. PC1, color-coding by the <code class="highlighter-rouge">type</code> column.</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">avocados_2d</span> <span class="o">=</span> <span class="n">normed_avocados</span> <span class="err">@</span> <span class="n">vt</span><span class="o">.</span><span class="n">T</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">avocados_2d</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">y</span> <span class="o">=</span> <span class="n">avocados_2d</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">hue</span> <span class="o">=</span> <span class="n">avocado</span><span class="p">[</span><span class="s">'type'</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">"PC2 vs. PC1 for Avocado Data by type"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">"Principal Component 1"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">"Principal Component 2"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p class="output output_png"><img src="../../images/notebooks/avocado/avocado_8_0.png" alt="png" /></p>
+
+<p>It looks like there is actually a lot of overlap, especially closer to 0 along PC1. So, in order to reduce overplotting, we’ll use <code class="highlighter-rouge">sns.kdeplot()</code> to plot a topographical version of the overplotted portion of the scatterplot to indicate the density of the points. This will use kernel density estimation to estimate the density of each of the principal components to produce contour plots of the 3D surface.</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">(</span><span class="n">avocados_2d</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">avocados_2d</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">15000</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">5000</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Principal Component 1'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Principal Component 2'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">"PC2 vs. PC1 with PC1 in [-15000, 0] and PC2 in [2000, 5000]"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p class="output output_png"><img src="../../images/notebooks/avocado/avocado_10_0.png" alt="png" /></p>
+
+<p>This plot shows where the overplotting issue is localized in the scatterplot above. While it appears in the scatterplot that the range [-100000, 0] along PC1 and [-10000, 10000] along PC2 contain the overplotting issues, the joint plot shows that the overplotting is actually <em>much</em> more localized than that.</p>
+
+<h2 id="k-nn-classifier">$k$-NN Classifier</h2>
+<p>This cell selects the 4 columns we will use from the original table (three data point columns and the <code class="highlighter-rouge">type</code> column) and shuffles the rows of the csv file and separates them into a training set, to which the avocado to be classified will be compared, and a test set, to test the accuracy of the classifer once it is built. The test set will retain its <code class="highlighter-rouge">type</code> column so that we know what proportion of avocados the classifier gets correct. The training set has 18,000 rows and the test set has 249.</p>
+
+<div class="language-r input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">R</span><span class="w">
+</span><span class="n">av</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">r_avocado</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+    </span><span class="n">select</span><span class="p">(</span><span class="n">AveragePrice</span><span class="p">,</span><span class="w"> </span><span class="s1">'Total Volume'</span><span class="p">,</span><span class="w"> </span><span class="s1">'Total Bags'</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+    </span><span class="n">sample_frac</span><span class="p">(</span><span class="m">1</span><span class="p">)</span><span class="w">
+</span><span class="n">av_train</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">av</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">18000</span><span class="p">,]</span><span class="w">
+</span><span class="n">av_test</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">av</span><span class="p">[</span><span class="o">-</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">18000</span><span class="p">),]</span><span class="w">
+
+</span><span class="c1"># ensuring all rows are capture in av_test and av_train</span><span class="w">
+</span><span class="nf">dim</span><span class="p">(</span><span class="n">av</span><span class="p">)[</span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nf">dim</span><span class="p">(</span><span class="n">av_train</span><span class="p">)[</span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">dim</span><span class="p">(</span><span class="n">av_test</span><span class="p">)[</span><span class="m">1</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="output output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[1] TRUE
+
+</code></pre></div></div>
+
+<h3 id="cartesian-distances">Cartesian Distances</h3>
+<p>In this section, I will define a function that finds the 3-dimensional cartesian distance between two points. This is an application of the Pythagorean Theorem. The distance between two points $(x_1, y_1, z_1)$ and $(x_2, y_2, z_2)$ is</p>
+
+<script type="math/tex; mode=display">d = \sqrt{(x_2-x_1)^2 + (y_2-y_1)^2 + (z_2-z_1)^2}</script>
+
+<p>The function defined takes as arguments a table whose first 3 columns are data points and an array containing the corresponding values for the point that is being compared. It returns the table with a new column that has the distance between each row in the table and the point in the array.</p>
+
+<div class="language-r input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">R</span><span class="w">
+</span><span class="n">dist</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="p">(</span><span class="n">tbl</span><span class="p">,</span><span class="w"> </span><span class="n">row</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="n">vec</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">row</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">slice</span><span class="p">(</span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="n">recursive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w"> </span><span class="n">unname</span><span class="p">()</span><span class="w">
+    </span><span class="n">new_tbl</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as_tibble</span><span class="p">(</span><span class="n">tbl</span><span class="p">)</span><span class="w">
+    </span><span class="n">distances</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">sqrt</span><span class="p">((</span><span class="n">new_tbl</span><span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">vec</span><span class="p">[</span><span class="m">1</span><span class="p">])</span><span class="o">^</span><span class="m">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">new_tbl</span><span class="p">[</span><span class="m">2</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">vec</span><span class="p">[</span><span class="m">2</span><span class="p">])</span><span class="o">^</span><span class="m">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">new_tbl</span><span class="p">[</span><span class="m">3</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">vec</span><span class="p">[</span><span class="m">3</span><span class="p">])</span><span class="o">^</span><span class="m">2</span><span class="p">)</span><span class="w">
+    </span><span class="n">new_tbl</span><span class="o">$</span><span class="n">distances</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">unlist</span><span class="p">(</span><span class="n">distances</span><span class="p">)</span><span class="w">
+    </span><span class="n">new_tbl</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%</span><span class="n">R</span> <span class="n">tbl</span> <span class="o">&lt;-</span> <span class="n">head</span><span class="p">(</span><span class="n">dist</span><span class="p">(</span><span class="n">av_train</span><span class="p">,</span> <span class="n">av_test</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]))</span>
+<span class="o">%</span><span class="n">Rget</span> <span class="n">tbl</span>
+</code></pre></div></div>
+
+<div class="output output_html">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>AveragePrice</th>
+      <th>Total Volume</th>
+      <th>Total Bags</th>
+      <th>type</th>
+      <th>distances</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>1.51</td>
+      <td>213417.87</td>
+      <td>93135.77</td>
+      <td>organic</td>
+      <td>3.594009e+04</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1.27</td>
+      <td>207295.00</td>
+      <td>73013.00</td>
+      <td>conventional</td>
+      <td>2.117595e+04</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1.33</td>
+      <td>10100.44</td>
+      <td>5844.44</td>
+      <td>organic</td>
+      <td>1.874337e+05</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.69</td>
+      <td>1325974.87</td>
+      <td>290191.77</td>
+      <td>conventional</td>
+      <td>1.160738e+06</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1.27</td>
+      <td>3025330.44</td>
+      <td>1072285.55</td>
+      <td>conventional</td>
+      <td>3.010836e+06</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>1.94</td>
+      <td>3507.89</td>
+      <td>2427.51</td>
+      <td>organic</td>
+      <td>1.947967e+05</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+<h3 id="majority-classification">Majority Classification</h3>
+<p>$k$-NN classifiers work by determining what classification a majority of the $k$ points closest to a point in question have. The function <code class="highlighter-rouge">find_majority</code> defined below runs the <code class="highlighter-rouge">dist</code> function on a table and returns that output sorted by increasing distance. The function <code class="highlighter-rouge">knn</code> below that selects the top $k$ rows and returns the majority classification.</p>
+
+<div class="language-r input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">R</span><span class="w">
+</span><span class="n">find_majority</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="n">df2</span><span class="p">,</span><span class="w"> </span><span class="n">row_index</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="n">test</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">df2</span><span class="p">[</span><span class="n">row_index</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">]</span><span class="w">
+    </span><span class="n">d</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">df</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+        </span><span class="n">dist</span><span class="p">(</span><span class="n">test</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+        </span><span class="n">arrange</span><span class="p">(</span><span class="n">distances</span><span class="p">)</span><span class="w">
+    </span><span class="n">d</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%</span><span class="n">R</span> <span class="n">tbl</span> <span class="o">&lt;-</span> <span class="n">head</span><span class="p">(</span><span class="n">find_majority</span><span class="p">(</span><span class="n">av_train</span><span class="p">,</span> <span class="n">av_test</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="o">%</span><span class="n">Rget</span> <span class="n">tbl</span>
+</code></pre></div></div>
+
+<div class="output output_html">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>AveragePrice</th>
+      <th>Total Volume</th>
+      <th>Total Bags</th>
+      <th>type</th>
+      <th>distances</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>1.10</td>
+      <td>186520.46</td>
+      <td>68397.88</td>
+      <td>conventional</td>
+      <td>1008.005987</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1.47</td>
+      <td>187381.18</td>
+      <td>70610.63</td>
+      <td>conventional</td>
+      <td>1538.694513</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1.55</td>
+      <td>187617.54</td>
+      <td>68068.26</td>
+      <td>organic</td>
+      <td>1786.127859</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1.23</td>
+      <td>187293.00</td>
+      <td>67821.00</td>
+      <td>conventional</td>
+      <td>1801.347256</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1.31</td>
+      <td>185003.97</td>
+      <td>70544.59</td>
+      <td>conventional</td>
+      <td>1826.876545</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.91</td>
+      <td>186464.64</td>
+      <td>67288.78</td>
+      <td>conventional</td>
+      <td>2113.266523</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+<div class="language-r input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">R</span><span class="w">
+</span><span class="n">knn</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="n">df2</span><span class="p">,</span><span class="w"> </span><span class="n">row</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="n">sort</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">find_majority</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="w"> </span><span class="n">df2</span><span class="p">,</span><span class="w"> </span><span class="n">row</span><span class="p">)</span><span class="w">
+    </span><span class="n">new_df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sort</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="n">k</span><span class="p">,]</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+        </span><span class="n">count</span><span class="p">(</span><span class="n">type</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+        </span><span class="n">arrange</span><span class="p">(</span><span class="n">desc</span><span class="p">(</span><span class="n">n</span><span class="p">))</span><span class="w">
+    </span><span class="n">new_df</span><span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%</span><span class="n">R</span> <span class="n">tbl</span> <span class="o">&lt;-</span> <span class="n">knn</span><span class="p">(</span><span class="n">av_train</span><span class="p">,</span> <span class="n">av_test</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+<span class="o">%</span><span class="n">Rget</span> <span class="n">tbl</span>
+</code></pre></div></div>
+
+<div class="output output_html">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>conventional</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+<h2 id="testing-the-classifier">Testing the Classifier</h2>
+<p>For an example, I will test how accurate the 7-nearest neighbors classifer is. The <code class="highlighter-rouge">test_accuracy</code> function defined below runs the classifier on all rows of the <code class="highlighter-rouge">av_test</code> table (the entire test set), and then returns the proportion of rows that were correctly classified.</p>
+
+<div class="language-r input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">R</span><span class="w">
+</span><span class="n">test_accuracy</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="p">(</span><span class="n">train</span><span class="p">,</span><span class="w"> </span><span class="n">test</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="n">indices</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="nf">dim</span><span class="p">(</span><span class="n">test</span><span class="p">)[</span><span class="m">1</span><span class="p">]</span><span class="w">
+    </span><span class="n">classed</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sapply</span><span class="p">(</span><span class="n">indices</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="n">i</span><span class="p">){</span><span class="n">knn</span><span class="p">(</span><span class="n">train</span><span class="p">,</span><span class="w"> </span><span class="n">test</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">)}))</span><span class="w">
+    </span><span class="n">classed_test</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">as_tibble</span><span class="p">(</span><span class="n">test</span><span class="p">)</span><span class="w">
+    </span><span class="n">classed_test</span><span class="o">$</span><span class="n">kNN.class</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">classed</span><span class="w">
+    </span><span class="nf">sum</span><span class="p">(</span><span class="n">classed_test</span><span class="o">$</span><span class="n">kNN.class</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">classed_test</span><span class="o">$</span><span class="n">type</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">dim</span><span class="p">(</span><span class="n">classed_test</span><span class="p">)[</span><span class="m">1</span><span class="p">]</span><span class="w"> 
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-r input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">R</span><span class="w">
+</span><span class="n">test_accuracy</span><span class="p">(</span><span class="n">av_train</span><span class="p">,</span><span class="w"> </span><span class="n">av_test</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="output output_data_text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[1] 0.9277108
+
+</code></pre></div></div>
+
+<h3 id="optimizing-k">Optimizing $k$</h3>
+<p>In order to determine how many nearest neigbors would be best to run on a random avocado, the cell below creates a table with the accuracy for each value of $k$. It will run through the classifier for odd integer values 1 through 99, and return a table with the accuracy of each value.</p>
+
+<div class="language-r input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">R</span><span class="w">
+</span><span class="n">results</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">tibble</span><span class="p">(</span><span class="n">.rows</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">50</span><span class="p">)</span><span class="w">
+</span><span class="n">results</span><span class="o">$</span><span class="n">k</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">seq</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">by</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w">
+</span><span class="n">accuracy</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">sapply</span><span class="p">(</span><span class="n">results</span><span class="o">$</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="n">k</span><span class="p">){</span><span class="n">test_accuracy</span><span class="p">(</span><span class="n">av_train</span><span class="p">,</span><span class="w"> </span><span class="n">av_test</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">)}))</span><span class="w">
+</span><span class="n">results</span><span class="o">$</span><span class="n">accuracy</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">unlist</span><span class="p">(</span><span class="n">accuracy</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%</span><span class="n">R</span> <span class="n">tbl</span> <span class="o">&lt;-</span> <span class="n">head</span><span class="p">(</span><span class="n">arrange</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">desc</span><span class="p">(</span><span class="n">accuracy</span><span class="p">)))</span>
+<span class="o">%</span><span class="n">Rget</span> <span class="n">tbl</span>
+</code></pre></div></div>
+
+<div class="output output_html">
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>k</th>
+      <th>accuracy</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>41.0</td>
+      <td>0.931727</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>5.0</td>
+      <td>0.927711</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>7.0</td>
+      <td>0.927711</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>11.0</td>
+      <td>0.927711</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>13.0</td>
+      <td>0.927711</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>15.0</td>
+      <td>0.927711</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+<p>The results of this test change depending on the training and test sets, so the best way to get the value of $k$ that is most accurate most of the time is to bootstrap the training and test sets, which will be done in Python. The R function <code class="highlighter-rouge">bootstrap_data_sets</code> shuffles the <code class="highlighter-rouge">r_avocado</code> table loaded into R earlier and returns a tibble with the desired columns. The Python <code class="highlighter-rouge">bootstrap_avocado</code> function gets this table using <code class="highlighter-rouge">%Rget</code> and returns two DataFrames, the training and test sets.</p>
+
+<div class="language-r input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">R</span><span class="w">
+</span><span class="n">bootstrap_data_sets</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="n">av</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">r_avocado</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+        </span><span class="n">select</span><span class="p">(</span><span class="n">AveragePrice</span><span class="p">,</span><span class="w"> </span><span class="s1">'Total Volume'</span><span class="p">,</span><span class="w"> </span><span class="s1">'Total Bags'</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="p">)</span><span class="w"> </span><span class="o">%&gt;%</span><span class="w">
+        </span><span class="n">sample_frac</span><span class="p">(</span><span class="m">1</span><span class="p">)</span><span class="w">
+    </span><span class="n">av</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">bootstrap_avocados</span><span class="p">():</span>
+    <span class="o">%</span><span class="n">R</span> <span class="n">bootstrapped_avocados</span> <span class="o">&lt;-</span> <span class="n">bootstrap_data_sets</span><span class="p">()</span>
+    <span class="n">av</span> <span class="o">=</span> <span class="o">%</span><span class="n">Rget</span> <span class="n">bootstrapped_avocados</span>
+    <span class="k">return</span> <span class="n">av</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">18000</span><span class="p">],</span> <span class="n">av</span><span class="p">[</span><span class="mi">18000</span><span class="p">:]</span>
+</code></pre></div></div>
+
+<p>In the cell below, we create a new DataFrame <code class="highlighter-rouge">optimal_k</code> which will contain the value of $k$ as the rows (and the index) and column $i$ of the DataFrame will be the accuracy for each value of $k$ on repetition $i$ of the bootstrap. That means that entry $(i, j)$ of the DataFrame below is the accuracy of $k=2i+1$ on repetition $j$.</p>
+
+<div class="language-python input_area highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">reps</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">optimal_k</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s">'k'</span> <span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">)})</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s">'k'</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="n">accuracies</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">bootstrap_avocados</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="o">%</span><span class="n">Rpush</span> <span class="n">k</span>
+        <span class="o">%</span><span class="n">Rpush</span> <span class="n">train</span>
+        <span class="o">%</span><span class="n">Rpush</span> <span class="n">test</span>
+        <span class="o">%</span><span class="n">R</span> <span class="n">train</span> <span class="o">&lt;-</span> <span class="n">as_tibble</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
+        <span class="o">%</span><span class="n">R</span> <span class="n">test</span> <span class="o">&lt;-</span> <span class="n">as_tibble</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+        <span class="o">%</span><span class="n">R</span> <span class="n">accuracy</span> <span class="o">&lt;-</span> <span class="n">test_accuracy</span><span class="p">(</span><span class="n">train</span><span class="p">,</span> <span class="n">test</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+        <span class="n">accuracy</span> <span class="o">=</span> <span class="o">%</span><span class="n">Rget</span> <span class="n">accuracy</span>
+        <span class="n">accuracies</span> <span class="o">+=</span> <span class="p">[</span><span class="n">accuracy</span><span class="p">]</span>
+    <span class="n">optimal_k</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">accuracies</span>
+    
+<span class="n">optimal_k</span>
+</code></pre></div></div>
+
+
+              <nav class="c-page__nav">
+  
+    
+    <a id="js-page__nav__prev" class="c-page__nav__prev" href="/notebooks/insurance/insurance">
+      〈 <span class="u-margin-right-tiny"></span> insurance.ipynb
+    </a>
+  
+
+  
+    
+    <a id="js-page__nav__next" class="c-page__nav__next" href="/notebooks/graduate-admissions/graduate-admissions">
+      graduate-admissions.ipynb <span class="u-margin-right-tiny"></span> 〉
+    </a>
+  
+</nav>
+
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+  </body>
+</html>
