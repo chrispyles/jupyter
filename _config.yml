@@ -20,7 +20,7 @@ title: Chris Pyles
 author: Christopher Pyles
 email: cpyles@berkeley.edu
 description:
-baseurl: ''              # the subpath of your site, e.g. /blog. If there is no subpath for your site, use an empty string ""
+baseurl: ""  # the subpath of your site, e.g. /blog. If there is no subpath for your site, use an empty string ""
 url: https://jupyter.cpyles.com # the base hostname & protocol for your site, e.g. http://example.com
 
 
@@ -35,7 +35,7 @@ use_hide_code_button: true        # If True, a small button appears to the right
 # Sidebar settings
 show_sidebar: true                # Show the sidebar. Only set to false if your only wish to host a single page.
 collapse_inactive_chapters: true  # Whether to collapse the inactive chapters in the sidebar
-textbook_logo: images/logo/logo.png               # A logo to be displayed at the top of your textbook sidebar
+textbook_logo: ""             # A logo to be displayed at the top of your textbook sidebar
 textbook_logo_link: https://jupyter.org/jupyter-book/intro.html          # A link for the logo.
 sidebar_footer_text: <a href='https://mybinder.org/v2/gh/chrispyles/jupyter/master?filepath=content%2Fnotebooks'
   target='_blank'><img src='https://mybinder.org/badge_logo.svg' /></a>
