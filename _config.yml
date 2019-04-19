@@ -16,13 +16,13 @@
 
 #######################################################################################
 # Jekyll site settings
+repository: chrispyles/jupyter
 title: Chris Pyles
 author: Christopher Pyles
 email: cpyles@berkeley.edu
 description: 
 baseurl: "" # the subpath of your site, e.g. /blog. If there is no subpath for your site, use an empty string ""
 url: "https://jupyter.cpyles.com" # the base hostname & protocol for your site, e.g. http://example.com
-repository: chrispyles/jupyter
 
 
 #######################################################################################
@@ -137,6 +137,7 @@ exclude:
 plugins:
   - jekyll-redirect-from
   - jekyll-scholar
+  - jekyll-github-metadata
 
 # Jupyter Book version - DO NOT CHANGE THIS. It is generated when a new book is created
 jupyter_book_version: INSERT
