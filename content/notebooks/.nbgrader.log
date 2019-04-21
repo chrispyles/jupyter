@@ -1,0 +1,104 @@
+[NotebookApp | WARNING] No nbgrader_config.py file found (rerun with --debug to see where nbgrader is looking)
+[NotebookApp | INFO] Loading the validate_assignment nbgrader serverextension
+[NotebookApp | INFO] Serving notebooks from local directory: /Users/chrispyles/GitHub/jupyter/content/notebooks
+[NotebookApp | INFO] 0 active kernels
+[NotebookApp | INFO] The Jupyter Notebook is running at:
+[NotebookApp | INFO] http://localhost:8888/
+[NotebookApp | INFO] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[NotebookApp | INFO] Creating new notebook in /suicide
+[NotebookApp | INFO] Kernel started: ef3b5bb0-a159-4712-a7cb-ad5476347ec8
+[NotebookApp | INFO] Adapting to protocol v5.0 for kernel ef3b5bb0-a159-4712-a7cb-ad5476347ec8
+[NotebookApp | INFO] Saving file at /suicide/Untitled.ipynb
+[NotebookApp | INFO] Saving file at /suicide/Untitled.ipynb
+[NotebookApp | INFO] Saving file at /suicide/Untitled.ipynb
+[NotebookApp | INFO] Saving file at /suicide/suicide-julia.ipynb
+[NotebookApp | INFO] Saving file at /suicide/suicide-julia.ipynb
+[NotebookApp | INFO] Saving file at /suicide/suicide-julia.ipynb
+[NotebookApp | INFO] Saving file at /suicide/suicide-julia.ipynb
+[NotebookApp | INFO] Saving file at /suicide/suicide-julia.ipynb
+[NotebookApp | INFO] Saving file at /suicide/suicide-julia.ipynb
+[NotebookApp | INFO] Saving file at /suicide/suicide-julia.ipynb
+[NotebookApp | INFO] Saving file at /suicide/suicide-julia.ipynb
+[NotebookApp | INFO] Saving file at /suicide/suicide-julia.ipynb
+[NotebookApp | INFO] Saving file at /suicide/suicide-julia.ipynb
+[NotebookApp | WARNING] 404 GET /static/components/codemirror/mode/jldoctest/jldoctest.js?v=20190418214956 (::1) 14.25ms referer=http://localhost:8888/notebooks/suicide/suicide-julia.ipynb
+[NotebookApp | INFO] Kernel interrupted: ef3b5bb0-a159-4712-a7cb-ad5476347ec8
+[NotebookApp | INFO] Saving file at /suicide/suicide-julia.ipynb
+[NotebookApp | INFO] Saving file at /suicide/suicide-julia.ipynb
+[NotebookApp | INFO] Saving file at /suicide/suicide-julia.ipynb
+[NotebookApp | INFO] Saving file at /suicide/suicide-julia.ipynb
+[NotebookApp | INFO] Saving file at /suicide/suicide-julia.ipynb
+[NotebookApp | INFO] Saving file at /suicide/suicide-julia.ipynb
+[NotebookApp | INFO] Saving file at /suicide/suicide-julia.ipynb
+[NotebookApp | INFO] Saving file at /suicide/suicide-julia.ipynb
+[NotebookApp | INFO] Saving file at /suicide/suicide-julia.ipynb
+[NotebookApp | INFO] Saving file at /suicide/suicide-julia.ipynb
+[NotebookApp | INFO] Starting buffering for ef3b5bb0-a159-4712-a7cb-ad5476347ec8:79cf769e76ed45f3a10255598c36d08d
+[NotebookApp | INFO] interrupted
+[NotebookApp | CRITICAL] Shutdown confirmed
+[NotebookApp | INFO] Shutting down 1 kernel
+[NotebookApp | INFO] Kernel shutdown: ef3b5bb0-a159-4712-a7cb-ad5476347ec8
+[NotebookApp | WARNING] No nbgrader_config.py file found (rerun with --debug to see where nbgrader is looking)
+[NotebookApp | INFO] Loading the validate_assignment nbgrader serverextension
+[NotebookApp | INFO] Serving notebooks from local directory: /Users/chrispyles/GitHub/jupyter/content/notebooks
+[NotebookApp | INFO] 0 active kernels
+[NotebookApp | INFO] The Jupyter Notebook is running at:
+[NotebookApp | INFO] http://localhost:8888/
+[NotebookApp | INFO] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[NotebookApp | INFO] Kernel started: d7794b32-f781-42c7-85f4-e974f72e89fd
+[NotebookApp | INFO] Adapting to protocol v5.0 for kernel d7794b32-f781-42c7-85f4-e974f72e89fd
+[NotebookApp | INFO] Kernel interrupted: d7794b32-f781-42c7-85f4-e974f72e89fd
+[NotebookApp | INFO] Starting buffering for d7794b32-f781-42c7-85f4-e974f72e89fd:22c0564ad2d34f00a2031f15e9d5bf32
+[NotebookApp | INFO] Kernel restarted: d7794b32-f781-42c7-85f4-e974f72e89fd
+[NotebookApp | INFO] Adapting to protocol v5.0 for kernel d7794b32-f781-42c7-85f4-e974f72e89fd
+[NotebookApp | INFO] Restoring connection for d7794b32-f781-42c7-85f4-e974f72e89fd:22c0564ad2d34f00a2031f15e9d5bf32
+[NotebookApp | INFO] Replaying 5 buffered messages
+[NotebookApp | INFO] Saving file at /suicide/suicide-julia.ipynb
+[NotebookApp | INFO] Saving file at /suicide/suicide-julia.ipynb
+[NotebookApp | INFO] interrupted
+[NotebookApp | CRITICAL] Shutdown confirmed
+[NotebookApp | INFO] Shutting down 1 kernel
+[NotebookApp | INFO] Kernel shutdown: d7794b32-f781-42c7-85f4-e974f72e89fd
+[NotebookApp | WARNING] No nbgrader_config.py file found (rerun with --debug to see where nbgrader is looking)
+[NotebookApp | INFO] Loading the validate_assignment nbgrader serverextension
+[NotebookApp | INFO] Serving notebooks from local directory: /Users/chrispyles/GitHub/jupyter/content/notebooks
+[NotebookApp | INFO] 0 active kernels
+[NotebookApp | INFO] The Jupyter Notebook is running at:
+[NotebookApp | INFO] http://localhost:8888/
+[NotebookApp | INFO] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[NotebookApp | INFO] Kernel started: 683af093-cf92-4d05-a956-3d157787bcf6
+[NotebookApp | INFO] Adapting to protocol v5.0 for kernel 683af093-cf92-4d05-a956-3d157787bcf6
+[NotebookApp | INFO] Saving file at /suicide/suicide-julia.ipynb
+[NotebookApp | INFO] Saving file at /suicide/suicide-julia.ipynb
+[NotebookApp | INFO] Saving file at /suicide/suicide-julia.ipynb
+[NotebookApp | INFO] Saving file at /suicide/suicide-julia.ipynb
+[NotebookApp | INFO] Saving file at /suicide/suicide-julia.ipynb
+[NotebookApp | INFO] Saving file at /suicide/suicide-julia.ipynb
+[NotebookApp | INFO] Saving file at /suicide/suicide-julia.ipynb
+[NotebookApp | INFO] Saving file at /suicide/suicide-julia.ipynb
+[NotebookApp | INFO] Saving file at /suicide/suicide-julia.ipynb
+[NotebookApp | INFO] Saving file at /suicide/suicide-julia.ipynb
+[NotebookApp | WARNING] 404 GET /static/components/codemirror/mode/jldoctest/jldoctest.js?v=20190418223631 (::1) 13.69ms referer=http://localhost:8888/notebooks/suicide/suicide-julia.ipynb
+[NotebookApp | INFO] Saving file at /suicide/suicide-julia.ipynb
+[NotebookApp | INFO] Saving file at /suicide/suicide-julia.ipynb
+[NotebookApp | INFO] Saving file at /suicide/suicide-julia.ipynb
+[NotebookApp | INFO] Saving file at /suicide/suicide-julia.ipynb
+[NotebookApp | INFO] Saving file at /suicide/suicide-julia.ipynb
+[NotebookApp | INFO] Starting buffering for 683af093-cf92-4d05-a956-3d157787bcf6:0fbbdc5b544d470b9a2533610025b3e7
+[NotebookApp | INFO] interrupted
+[NotebookApp | CRITICAL] Shutdown confirmed
+[NotebookApp | INFO] Shutting down 1 kernel
+[NotebookApp | INFO] Kernel shutdown: 683af093-cf92-4d05-a956-3d157787bcf6
+[NotebookApp | WARNING] No nbgrader_config.py file found (rerun with --debug to see where nbgrader is looking)
+[NotebookApp | INFO] Loading the validate_assignment nbgrader serverextension
+[NotebookApp | INFO] Serving notebooks from local directory: /Users/chrispyles/GitHub/jupyter/content/notebooks
+[NotebookApp | INFO] 0 active kernels
+[NotebookApp | INFO] The Jupyter Notebook is running at:
+[NotebookApp | INFO] http://localhost:8888/
+[NotebookApp | INFO] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[NotebookApp | INFO] Creating new notebook in /suicide
+[NotebookApp | INFO] Kernel started: be5e99a8-766d-41f1-95be-e31348882296
+[NotebookApp | INFO] Adapting to protocol v5.0 for kernel be5e99a8-766d-41f1-95be-e31348882296
+[NotebookApp | INFO] Saving file at /suicide/Untitled.ipynb
+[NotebookApp | INFO] Saving file at /suicide/suicide-pandas-jl.ipynb
+[NotebookApp | INFO] Starting buffering for be5e99a8-766d-41f1-95be-e31348882296:078a04e9791146fcb7104a021a9da7f0
