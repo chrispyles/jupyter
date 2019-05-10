@@ -1,0 +1,19 @@
+[NotebookApp | WARNING] No nbgrader_config.py file found (rerun with --debug to see where nbgrader is looking)
+[NotebookApp | INFO] Loading the validate_assignment nbgrader serverextension
+[NotebookApp | INFO] Serving notebooks from local directory: /Users/chrispyles/GitHub/jupyter/content
+[NotebookApp | INFO] 0 active kernels
+[NotebookApp | INFO] The Jupyter Notebook is running at:
+[NotebookApp | INFO] http://localhost:8888/
+[NotebookApp | INFO] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[NotebookApp | WARNING] Notebook notebooks/graduate-admissions/graduate-admissions.ipynb is not trusted
+[NotebookApp | INFO] Kernel started: 758b16ae-028a-46fd-8379-4b13c96391af
+[NotebookApp | INFO] Adapting to protocol v5.1 for kernel 758b16ae-028a-46fd-8379-4b13c96391af
+[NotebookApp | INFO] Starting buffering for 758b16ae-028a-46fd-8379-4b13c96391af:11e63cb970294a2fa809704262a94bed
+[NotebookApp | INFO] Kernel started: cde154d0-6128-41ac-a8e0-1567e2922e45
+[NotebookApp | INFO] Adapting to protocol v5.1 for kernel cde154d0-6128-41ac-a8e0-1567e2922e45
+[NotebookApp | INFO] Starting buffering for cde154d0-6128-41ac-a8e0-1567e2922e45:747e6b937c9146f9997576a360d7174e
+[NotebookApp | INFO] interrupted
+[NotebookApp | CRITICAL] Shutdown confirmed
+[NotebookApp | INFO] Shutting down 2 kernels
+[NotebookApp | INFO] Kernel shutdown: 758b16ae-028a-46fd-8379-4b13c96391af
+[NotebookApp | INFO] Kernel shutdown: cde154d0-6128-41ac-a8e0-1567e2922e45
